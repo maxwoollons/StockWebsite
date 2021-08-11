@@ -129,7 +129,7 @@ def purchase(request, pk):
             p = purchases(User=request.user.users,Photo_id=pk,downloaded=False)
             p.save()
             onew = otokens + cost
-            ouser.update_or_create(tokens=onew) #admin gets 40%
+            ouser.update(tokens=onew)
             
             return redirect('success')
         else:
@@ -145,3 +145,7 @@ def purchase(request, pk):
     
 def success(request):
     return render(request, 'PhamPhotosApp/successful.html')
+
+
+def homey(request):
+    return redirect('home')

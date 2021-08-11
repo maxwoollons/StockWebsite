@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 from django.db.models.fields.related import ForeignKey, ManyToManyField
 
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill, SmartResize
+
 from django.contrib.auth.models import User
 User._meta.get_field('email')._unique = True
 
@@ -25,6 +28,7 @@ class photos(models.Model): #PHOTO
     owner = models.ForeignKey(User, on_delete=CASCADE)
     cameratype = models.CharField(max_length=255, null=True, blank=True)
     approved = models.BooleanField(default=False)
+    image_thumbnail = ImageSpecField(source="photo",processors=[ResizeToFill(800,800)],format="JPEG",options={'quality':60})
     def __str__(self):
         return str(self.id) + ' Approved:' + str(self.approved)
 
