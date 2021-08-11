@@ -1,13 +1,8 @@
 {% extends "PhamPhotosApp/base.html" %} {% block content %}
 
-<style>
-
-
-
-</style>
+<style></style>
 
 <div class="container">
-
   <div class="row text-here">
     <div class="col-md-7">
       <h1>PROFILE</h1>
@@ -17,21 +12,21 @@
       <h3>Username: {{ a.username }}</h3>
       <h3>User Tokens: {{ a.users.tokens }}</h3>
       {% endfor %}
-      <br>
-
+      <br />
     </div>
     <div class="col-md-5">
-      <p style="margin-top: 30px">want to purchase tokens?</p>
-      <a href="#">Token Purchase Page</a>
-
-
+      <p style="margin-top: 30px">want to purchase credits?</p>
+      <a href="/credits">Credit Purchase Page</a>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <h1 class="pb-2 text-white">My Uploads</h1>
       {% if uploads %}
-      <table class="table-pro" style="width:100%; color:white;">
+      <table
+        class="table table-sm table-bordered"
+        style="width: 100%; color: white"
+      >
         <tr>
           <th>Title</th>
           <th>Approved Status</th>
@@ -39,42 +34,56 @@
           <th>Delete</th>
         </tr>
 
-
         {% for b in uploads %}
         <tr>
-          <th>{{ b.title }} </th>
+          <th>{{ b.title }}</th>
           {% if b.approved == True %}
-           <th style="color: rgb(79, 224, 79);">{{ b.approved }}</th>
+          <th style="color: rgb(79, 224, 79)">{{ b.approved }}</th>
           {% else %}
-            <th style="color: red;">{{ b.approved }}</th>
+          <th style="color: red">{{ b.approved }}</th>
           {% endif %}
-          <th><a href="../{{ b.id }}"><img class="kasdjasdhkh" src="../media/{{ b.photo }}" alt="{{ b.title }}"></a>
+          <th>
+            <a href="../{{ b.id }}"
+              ><img
+                class="kasdjasdhkh"
+                src="../media/{{ b.photo }}"
+                alt="{{ b.title }}"
+            /></a>
           </th>
-          <th><a href="./del/{{ b.id }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                fill="currentColor" class="bi bi-trash aaad" viewBox="0 0 16 16">
+          <th>
+            <a href="./del/{{ b.id }}"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-trash aaad"
+                viewBox="0 0 16 16"
+              >
                 <path
-                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                <path fill-rule="evenodd"
-                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-              </svg></a></th>
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                /></svg
+            ></a>
+          </th>
         </tr>
 
         {% endfor %}
-
-
       </table>
       {% else %}
       <h3 class="white-text">You have not uploaded any images</h3>
       {% endif %}
-
     </div>
-
-
-
 
     <div class="col-md-6">
       <h1 class="text-white">Purchases</h1>
-      <table class="table-pro" style="width:100%; color:white;">
+      <table
+        class="table table-sm table-bordered"
+        style="width: 100%; color: white"
+      >
         {% if pur %}
         <tr>
           <th>Transaction ID</th>
@@ -88,29 +97,78 @@
           <th>{{c.id}}</th>
           <th>{{c.date}}</th>
           <th>{{ c.Photo.title }}</th>
-          <th><a href="../{{ c.Photo.id }}"><img class="kasdjasdhkh" src="../media/{{ c.Photo.photo }}" alt="{{ c.title }}"></a>
+          <th>
+            <a href="../{{ c.Photo.id }}"
+              ><img
+                class="kasdjasdhkh"
+                src="../media/{{ c.Photo.photo }}"
+                alt="{{ c.title }}"
+            /></a>
           </th>
-          <th><a href="../media/{{ c.Photo.photo }}" download><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-          </svg></a></th>
+          <th>
+            <a href="../media/{{ c.Photo.photo }}" download
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-download"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+                /></svg
+            ></a>
+          </th>
         </tr>
 
         {% endfor %}
-
-
       </table>
       {% else %}
 
       <h3 class="text-white">No Purchases</h3>
 
       {% endif %}
+    </div>
+    <div class="row">
+      <div class="col-6">
 
+        <h1 class="text-white">Payment Log</h1>
+        {% if items %}
+
+        
+
+        <table
+          class="table table-sm table-bordered"
+          style="width: 100%; color: white"
+        >
+        <tr>
+          <th>Payment</th>
+          <th>Amount</th>
+          <th>Added</th>
+        </tr>
+          {% for nut in items %}
+          <tr>
+            <th>{{nut.id}}</th>
+            <th>{{nut.amount}}</th>
+            <th>{{nut.added}}</th>
+          </tr>
+
+          {% endfor %}
+        </table>
+
+        {% else %}
+
+        <h2>No once has purchased your image</h2>
+
+        {% endif %}
+      </div>
+      <div class="col-6"></div>
     </div>
   </div>
 
-
-
-
-
   {% endblock content %}
+</div>

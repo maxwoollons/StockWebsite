@@ -4,7 +4,7 @@ from django.http import request
 from django.shortcuts import redirect, render
 from .forms import UserRegistrationForm, MediaSubmit
 from django.contrib import messages
-from .models import photos, purchases, users
+from .models import photos, purchases, users, payments
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 import PIL
@@ -72,10 +72,15 @@ def SubmitMedia(request):
 
 @login_required
 def ProfilePage(request):
+   # photo_ids = photos.objects.all().filter(owner_id=request.user.id)
+   # pic_owner = purchases.objects.values_list('price', flat=True).get(id=pk)
     user = User.objects.all().filter(id=request.user.id)
     purchase = purchases.objects.all().filter(User=request.user.users)
+    purchasess = purchases.objects.all()
     uploads = photos.objects.all().filter(owner=request.user)
-    return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase})
+    payment = payments.objects.all().filter(user=request.user)
+    
+    return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment})
 
 
 
@@ -108,7 +113,7 @@ def delete(request, pk):
     if photos.objects.all().filter(id=pk,owner=request.user):
         img = photos.objects.all().filter(id=pk,owner=request.user)
         img.delete()
-        return render(request, 'PhamPhotosApp/delete.html')
+        return render(request, 'PhamPhotosApp/delete.html') 
     else:
         return redirect('home')
     
@@ -119,17 +124,23 @@ def purchase(request, pk):
     user = users.objects.all().filter(user_id=request.user.id)
     pic_owner = photos.objects.values_list('owner_id', flat=True).get(id=pk)
     cost = photos.objects.values_list('price', flat=True).get(id=pk)
-    ouser = users.objects.all().filter(user_id=pic_owner)
+    ouser = users.objects.all().filter(user_id=pic_owner) #
+    owneruser = User.objects.get(id=pic_owner) #
     otokens = users.objects.values_list('tokens', flat=True).get(user=pic_owner)
     print(pic_owner)
     if request.user.id != pic_owner:
         if cost <= tokens:
+            commission = cost*40/100
+            onew = otokens + (cost - commission)
+            paied = cost-commission
             new = tokens - cost
             user.update(tokens=new)
-            p = purchases(User=request.user.users,Photo_id=pk,downloaded=False)
+            p = purchases(User=request.user.users,Photo_id=pk,downloaded=False,paied=paied)
             p.save()
-            onew = otokens + cost
+            
             ouser.update(tokens=onew)
+            q = payments(user=owneruser,amount=paied)
+            q.save()
             
             return redirect('success')
         else:
@@ -149,3 +160,7 @@ def success(request):
 
 def homey(request):
     return redirect('home')
+
+
+def credits(request):
+    return render(request, 'PhamPhotosApp/credits.html')

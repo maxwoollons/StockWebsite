@@ -16,6 +16,7 @@ urlpatterns = [
     path('profile/del/<int:pk>', views.delete, name='delete'),
     path('purchase/<int:pk>', views.purchase, name='buy'),
     path('purchase/success', views.success, name='success'),
+    path('credits/', views.credits, name='credits'),
     
     
     

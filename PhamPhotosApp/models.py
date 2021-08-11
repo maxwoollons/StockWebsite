@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
+from django.db.models.deletion import CASCADE, SET_DEFAULT, SET_NULL
 from django.db.models.fields import BooleanField, CharField, DateTimeField, IntegerField, TextField
 import datetime
 from django.contrib.auth.models import User
@@ -15,7 +15,7 @@ User._meta.get_field('email')._unique = True
 
 class users(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    tokens = models.IntegerField(default=0)
+    tokens = models.FloatField(default=0)
 
 
 
@@ -40,11 +40,14 @@ class purchases(models.Model):
     Photo = models.ForeignKey(photos, on_delete=CASCADE)
     date = models.DateTimeField(auto_now=True)
     downloaded = models.BooleanField()
+    paied = models.FloatField(null=True, blank=True)
     
     
 class cart(models.Model):
     photo = ForeignKey(photos, on_delete=CASCADE)
     user = ForeignKey(User, on_delete=CASCADE)
-    
-    
-    
+
+class payments(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    amount = models.FloatField(null=True, blank=True)
+    added = models.DateTimeField(auto_now=True)
