@@ -1,0 +1,90 @@
+{% extends "PhamPhotosApp/base.html" %} {% block content %}
+
+<style>
+
+
+
+</style>
+
+<div class="container-fluid">
+
+  <div class="row text-here">
+   
+      
+      <div class="row">
+      <div class="col-md-10">
+        <h1 class="p-2">{{ obj.title }}</h1>
+        <center>
+        <img id="myImg" src="media/{{ obj.photo }}" alt="{{ obj.title }}" style="max-width:100%;max-height:100%;">
+      </center>
+      </div>
+      <div class="col-md-2 detailcoloum">
+        
+        <h2>Image Details</h2>
+        {% if obj.cameratype %}
+        <h4><strong>Cameratype:</strong> {{ obj.cameratype }}</h4>
+        {% endif %}
+        <h4><strong>Credits:</strong> {{ obj.price }}</h4>
+        
+        <h4>Resolution: {{view.height}}x{{obj.width}}</h4>
+        <h4>Made By: {{ obj.owner.username }}</h4>
+        <h4>description: {{ obj.description }}</h4>
+        <a class="asdasda" href='purchase/{{ obj.id }}'><button class="btn btn-primary m-1 p1">Purchase</button></a>
+        <a class="asdasda" href='/'><button class="btn btn-danger m-1 p1">Home</button></a>
+      
+      </div>
+    </div>
+     <div class="row">
+    <div class="col-12 asdasdgf">
+     <span class="p-3"></span>
+    </div>
+    </div>
+      
+    
+      <div id="myModal" class="modal">
+
+        
+        <span class="close">&times;</span>
+
+        
+        <img class="modal-content" id="img01">
+
+        
+        <div id="caption"></div> <br>
+      </div>
+
+
+
+
+
+
+      
+    </div>
+  </div>
+
+
+
+  <script>
+   
+    var modal = document.getElementById("myModal");
+
+  
+    var img = document.getElementById("myImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function () {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+  </script>
+
+
+  {% endblock content %}

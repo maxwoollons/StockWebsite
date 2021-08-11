@@ -1,0 +1,79 @@
+{% extends "PhamPhotosApp/base.html" %} {% block content %}
+
+
+
+<style>
+
+
+
+</style>
+
+
+
+<div class="main-header p-5">
+  <div class="container-fluid py-5 niii">
+    <h1 class="display-5 fw-bold text-here">Explore Stock Footage</h1>
+    <video autoplay muted loop>
+      <source src="media\images\banner.mp4" type="video/mp4">
+    </video>
+    <center>
+      <form method="GET" class="text-align-center form-top" action="{% url 'search' %}"><input name="search"
+          placeholder="Search for Footage" class="bar"><button class="search-button" type="submit"><svg
+            xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></button></form>
+      <p class="trending-text">Trending Searches: COVID-19, Food, Pandemic, Sport, Super Slow, Business, Time Lapse</p>
+    </center>
+
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-md-10 flexy">
+      {% if messeges %}
+      {% for messege in messeges %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
+      
+        {% for a in photos %}
+        
+        <div class="box">
+          <a class="image-home" href='{{ a.id }}'>
+            
+            <img class="display-image" src='media/{{ a.photo }}'/>
+            
+          
+        
+
+          </a>
+        </div>
+        
+        {% endfor %}
+      </div>
+    <div class="col-md-2 sidebarhome">
+      
+      <center>
+      
+
+      <a href="/register"><button class="starttoday"><strong>Start Free Today!</strong></button></a>
+      <br>
+      <br>
+      <a href="#" class="price_link"><h1 class="pricing">Pricing</h1></a>
+    </center>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock content %}
