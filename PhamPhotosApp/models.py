@@ -50,4 +50,5 @@ class cart(models.Model):
 class payments(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
     amount = models.FloatField(null=True, blank=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
     added = models.DateTimeField(auto_now=True)

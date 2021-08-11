@@ -126,6 +126,7 @@ def purchase(request, pk):
     cost = photos.objects.values_list('price', flat=True).get(id=pk)
     ouser = users.objects.all().filter(user_id=pic_owner) #
     owneruser = User.objects.get(id=pic_owner) #
+    title = photos.objects.values_list('title', flat=True).get(id=pk)
     otokens = users.objects.values_list('tokens', flat=True).get(user=pic_owner)
     print(pic_owner)
     if request.user.id != pic_owner:
@@ -139,7 +140,7 @@ def purchase(request, pk):
             p.save()
             
             ouser.update(tokens=onew)
-            q = payments(user=owneruser,amount=paied)
+            q = payments(user=owneruser,amount=paied,title=title)
             q.save()
             
             return redirect('success')

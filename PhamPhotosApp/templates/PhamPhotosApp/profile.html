@@ -136,7 +136,7 @@
     <div class="row">
       <div class="col-6">
 
-        <h1 class="text-white">Payment Log</h1>
+        <h1 class="text-white">Payment Log/Income</h1>
         {% if items %}
 
         
@@ -147,12 +147,15 @@
         >
         <tr>
           <th>Payment</th>
+          <th>Product</th>
           <th>Amount</th>
           <th>Added</th>
         </tr>
           {% for nut in items %}
           <tr>
             <th>{{nut.id}}</th>
+            <th>{{nut.title}}</th>
+
             <th>{{nut.amount}}</th>
             <th>{{nut.added}}</th>
           </tr>
