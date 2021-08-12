@@ -14,9 +14,9 @@ jobs:
         password: ${{ secrets.Sec }}
         port: 22
         script: 
-        cd Desktop
-        cd ServerFiles
-        cd StockWebsite
-        git pull https://github.com/maxwoollons/StockWebsite
-        
-        python3 manage.py runserver
+          cd Desktop
+          cd ServerFiles
+          cd StockWebsite
+          git pull https://github.com/maxwoollons/StockWebsite
+          
+          python3 manage.py runserver
