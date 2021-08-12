@@ -1,11 +1,43 @@
 from django.contrib import admin
 from .models import users, purchases, photos, payments
-
+from django.contrib import messages
+from django.utils.translation import ngettext
 
 # Register your models here.
 admin.site.site_header = 'UI Administrator'
 
-admin.site.register(photos)
-admin.site.register(purchases)
-admin.site.register(users)
-admin.site.register(payments)
+
+
+
+
+def approve(modeladmin, request, queryset):
+    for image in queryset:
+        image.approved = True
+        image.save()
+approve.short_description = 'Quickly Accept Images'
+
+
+
+
+class modphotos(admin.ModelAdmin):
+    list_display = ['photo', 'approved', 'price']
+    actions = [approve,]  # <-- Add the list action function here
+
+
+
+class modpurchases(admin.ModelAdmin):
+    list_display = ['User', 'Photo', 'date','paied']
+   
+
+class modpayments(admin.ModelAdmin):
+    list_display = ['user', 'amount', 'added']
+
+
+class modusers(admin.ModelAdmin):
+    list_display = ['user', 'tokens']
+
+
+admin.site.register(photos, modphotos)
+admin.site.register(purchases,modpurchases)
+admin.site.register(users, modusers)
+admin.site.register(payments, modpayments)

@@ -31,7 +31,7 @@
 </div>
 
   <div class="row">
-    <div class="col-md-10 flexy">
+    <div class="col-xl-10 flexy">
       {% if messeges %}
       {% for messege in messeges %}
       <div class="alert alert-{{ message.tags }}">{{ message }}</div>
@@ -53,16 +53,19 @@
         
         {% endfor %}
       </div>
-    <div class="col-md-2 sidebarhome">
+      
+    <div class="col-xl-2 sidebarhome">
       
       <center>
-      
-
+      <br>
+      {% if user.is_authenticated == False %}
       <a href="/register"><button class="starttoday"><strong>Start Free Today!</strong></button></a>
       <br>
       <br>
-      <a href="/credits" class="price_link"><h1 class="pricing">Purchase Credits</h1></a>
+      {%endif%}
+      <a href="/credits" class="price_link"><Button class="btn btn-outline-success m-3">Purchase Credits</button></a>
     </center>
+    
     </div>
   </div>
 

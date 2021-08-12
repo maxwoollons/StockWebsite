@@ -41,6 +41,8 @@ class purchases(models.Model):
     date = models.DateTimeField(auto_now=True)
     downloaded = models.BooleanField()
     paied = models.FloatField(null=True, blank=True)
+    def __str__(self):
+        return str(self.id) +  ' ' + str(self.User)
     
     
 class cart(models.Model):

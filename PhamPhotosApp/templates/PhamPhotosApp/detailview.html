@@ -26,7 +26,7 @@
         {% endif %}
         <h4><strong>Credits:</strong> {{ obj.price }}</h4>
         
-        <h4>Resolution: {{view.height}}x{{obj.width}}</h4>
+        <h4>Pixels: {{obj.photo.height}}x{{obj.photo.width}}</h4>
         <h4>Made By: {{ obj.owner.username }}</h4>
         <h4>description: {{ obj.description }}</h4>
         <a class="asdasda" href='purchase/{{ obj.id }}'><button class="btn btn-primary m-1 p1">Purchase</button></a>

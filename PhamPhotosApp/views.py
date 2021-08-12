@@ -7,8 +7,8 @@ from django.contrib import messages
 from .models import photos, purchases, users, payments
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
+from PIL import Image
 import PIL
-
 
 
 def login_excluded(redirect_to):
@@ -89,16 +89,6 @@ class PhotoDetail(DetailView):
     context_object_name='obj'
     template_name="detailview.html"
     model = photos
-    def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-        a = photos.objects.all().filter(id=self.kwargs["pk"]).values_list('photo', flat=True)
-        
-        image = PIL.Image.open("media/" + a[0])
-        
-        w,h = image.size
-        context['height'] = h
-        context['width'] = w
-        return context
     
     
 def search(request):
