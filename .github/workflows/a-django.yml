@@ -27,6 +27,7 @@ jobs:
         pip3 install django-crispy
         pip3 install django-imagekit
         pip3 install pillow
+        pip3 install pytest
     - name: Run Tests
       run: |
         pytest
