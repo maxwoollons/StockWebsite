@@ -23,8 +23,10 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip3 install django
+        pip3 install django-crispy
+        pip3 install pillow
+        pip3 install django-imagekit
     - name: Run Server
       run: |
         python3 manage.py runserver 192.168.1.115:8000
