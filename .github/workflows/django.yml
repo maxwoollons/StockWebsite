@@ -29,4 +29,4 @@ jobs:
         pip3 install django-imagekit
     - name: Run Server
       run: |
-        python3 manage.py runserver 127.0.0.1:8000
+        python3 manage.py runserver 192.168.1.115:8000
