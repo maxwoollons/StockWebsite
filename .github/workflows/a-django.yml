@@ -1,4 +1,7 @@
 name: Django CI
+- name: Setup Python
+  uses: actions/setup-python@v2.2.2
+
 
 on:
   push:
