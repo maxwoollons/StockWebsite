@@ -29,4 +29,5 @@ jobs:
         pip3 install pillow
     - name: Run Tests
       run: |
+        pytest
         python3 manage.py runserver 192.168.1.115:8000
