@@ -9,24 +9,28 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-9">
+  <center>
+    <div class="col-md-9" style="text-align: left;">
       {% if messeges %}
         {% for messege in messeges %}
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
       {% endif %}
-     
-      <form class="register" method="POST" enctype="multipart/form-data">
+      
+      <form class="register" method="POST" enctype="multipart/form-data" style="padding:10px">
       
         <!-- Token -->
         
         {% csrf_token %}
         {{ form|crispy }}
-        <button class="btn btn-outline-info" type="submit">Submit</button>
+        <button class="btn btn-outline-info" style="margin-top:20px;" type="submit">Submit</button>
+        
       
       </form>
+      
   
   </div>
+  </center>
 </div>
 
 
