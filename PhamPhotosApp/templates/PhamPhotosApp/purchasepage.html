@@ -98,7 +98,11 @@
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(orderData) {
                     // Successful capture! For demo purposes:
-                    actions.redirect('PhamPhotosApp/home.html')
+                   
+                    const element = document.getElementById('paypal-button-container');
+                    element.innerHTML = '';
+                    element.innerHTML = '<h3 style="color:rgb(72, 209, 38);">Thank you for your payment!</h3>';
+                    
                     completeOrder()
                     
                 });
