@@ -201,11 +201,9 @@ def paymentcomplete(request):
     cost = body['cost']
     database = creditpurchases(user=request.user,creditamount=tokens,cost=cost)
     database.save()
-
-    
-
-    
     return redirect('home')
         
+
+    
         
     

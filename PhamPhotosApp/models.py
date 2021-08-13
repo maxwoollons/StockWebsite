@@ -15,7 +15,7 @@ User._meta.get_field('email')._unique = True
 
 class users(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    tokens = models.FloatField(default=0)
+    tokens = models.IntegerField(default=0)
     def __str__(self):
         return str(self.id) + str(self.user) + str(self.tokens) 
 
