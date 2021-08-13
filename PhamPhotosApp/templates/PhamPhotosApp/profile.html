@@ -51,7 +51,6 @@
       <h3>ID: {{ a.id }}</h3>
       <h3>Email: {{ a.email }}</h3>
       <h3>Username: {{ a.username }}</h3>
-      <h3>Credits: {{ a.users.tokens }}</h3>
       {% endfor %}
       <br /></p>
         <a href="/submit"><button class="btn btn-primary btn-lg" type="button">Upload Media</button></a>
@@ -62,7 +61,10 @@
     <div class="col-md-5">
      <div class="p-5 mb-4 bg-dark rounded-3 mt-3">
       <div class="container-fluid py-5">
+      {% for a in profile %}
+      <h2>You have {{ a.users.tokens }} credits</h2>
        <h1><strong>Want Credits?</strong></h1>
+       {% endfor %}
        <h6>Purchasing an image gives you a permanent license for the rights of using images for commercial use.</h6>
 
        <a href="/credits"><button type="button" class="btn btn-outline-primary m-3">Purchase Credits</button></a>    
