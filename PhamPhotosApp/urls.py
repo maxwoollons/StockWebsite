@@ -17,6 +17,10 @@ urlpatterns = [
     path('purchase/<int:pk>', views.purchase, name='buy'),
     path('purchase/success', views.success, name='success'),
     path('credits/', views.credits, name='credits'),
+    path('credits/<int:amt>', views.purchasepage, name='credits-pur'),
+    path('credits/getpost', views.cusamt, name='credits-pur'),
+    path('complete/', views.paymentcomplete, name='complete'),
+
     
     
     

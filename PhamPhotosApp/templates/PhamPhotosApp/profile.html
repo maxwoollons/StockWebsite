@@ -150,7 +150,7 @@
     
       <div class="col-12 bg-white rounded">
 
-        <h1 class="">Payment Log/Income</h1>
+        <h1 class="">Income log</h1>
         {% if items %}
 
         
@@ -179,7 +179,45 @@
 
         {% else %}
 
-        <h2>No once has purchased has your image</h2>
+        <h3>No once has purchased has your image</h3>
+
+        {% endif %}
+      </div>
+       <div class="col-12 bg-white rounded">
+
+        <h1 class="">Credit Payments</h1>
+        {% if creditss %}
+
+        
+
+        <table
+          class="table table-sm table-bordered"
+          style="width: 100%;"
+        >
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Credit Amount</th>
+           <th>Amount Paied</th>
+           <th>Date</th>
+          
+        </tr>
+          {% for cred in creditss %}
+          <tr>
+            <th>{{cred.id}}</th>
+            <th>{{cred.user}}</th>
+              <th>${{cred.cost}} AUD</th>
+            <th>+ {{cred.creditamount}} Credits</th>
+             <th>{{cred.added}}</th>
+            
+          </tr>
+
+          {% endfor %}
+        </table>
+
+        {% else %}
+
+        <h3>You have not purchased any credits through our store</h3>
 
         {% endif %}
       </div>

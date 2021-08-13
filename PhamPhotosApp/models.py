@@ -16,6 +16,9 @@ User._meta.get_field('email')._unique = True
 class users(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tokens = models.FloatField(default=0)
+    def __str__(self):
+        return str(self.id) + str(self.user) + str(self.tokens) 
+
 
 
 
@@ -54,3 +57,16 @@ class payments(models.Model):
     amount = models.FloatField(null=True, blank=True)
     title = models.CharField(max_length=255, null=True, blank=True)
     added = models.DateTimeField(auto_now=True)
+
+
+class creditpurchases(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    creditamount = models.FloatField(null=True, blank=True)
+    cost = models.FloatField(null=True, blank=True)
+    added = models.DateTimeField(auto_now=True)
+
+
+
+
+
+

@@ -4,11 +4,12 @@ from django.http import request
 from django.shortcuts import redirect, render
 from .forms import UserRegistrationForm, MediaSubmit
 from django.contrib import messages
-from .models import photos, purchases, users, payments
+from .models import photos, purchases, users, payments, creditpurchases
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from PIL import Image
 import PIL
+import json
 
 
 def login_excluded(redirect_to):
@@ -79,8 +80,9 @@ def ProfilePage(request):
     purchasess = purchases.objects.all()
     uploads = photos.objects.all().filter(owner=request.user)
     payment = payments.objects.all().filter(user=request.user)
+    credits = creditpurchases.objects.all().filter(user=request.user)
     
-    return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment})
+    return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
 
 
 
@@ -155,3 +157,55 @@ def homey(request):
 
 def credits(request):
     return render(request, 'PhamPhotosApp/credits.html')
+
+@login_required
+def purchasepage(request, amt):
+    if amt < 2:
+        return redirect('credits')
+    elif amt == 5:
+        toke = 500
+        name_pack = "$5 Credit Deal"
+        return render(request, 'PhamPhotosApp/purchasepage.html',{'cost':amt,'credits':toke,'deal':name_pack})
+    elif amt == 10:
+        toke = 1100
+        name_pack = "$10 Credit Deal"
+        return render(request, 'PhamPhotosApp/purchasepage.html',{'cost':amt,'credits':toke,'deal':name_pack})
+    elif amt == 20:
+        toke = 3000
+        name_pack = "$20 Credit Deal"
+        return render(request, 'PhamPhotosApp/purchasepage.html',{'cost':amt,'credits':toke,'deal':name_pack})
+    else:
+        amt = amt
+        toke = amt * 100
+        name_pack = "Custom Amount"
+        custom = True
+        return render(request, 'PhamPhotosApp/purchasepage.html',{'cost':amt,'credits':toke,'deal':name_pack,'cus':custom})
+    
+@login_required
+def cusamt(request):
+    if request.method == 'POST':
+        amt = request.POST.get("amt", "")
+        
+        
+        return redirect('./'+amt)
+
+
+def paymentcomplete(request):
+    body = json.loads(request.body)
+    print(body)
+    tokens = body['credits']
+    current_credits = users.objects.values_list('tokens', flat=True).get(user=request.user)
+    total = current_credits + float(tokens)
+    user = users.objects.all().filter(user_id=request.user.id)
+    user.update(tokens=total)
+    cost = body['cost']
+    database = creditpurchases(user=request.user,creditamount=tokens,cost=cost)
+    database.save()
+
+    
+
+    
+    return redirect('home')
+        
+        
+    

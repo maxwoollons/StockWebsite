@@ -44,7 +44,9 @@
               <li>Email support</li>
               <li>Help center access</li>
             </ul>
-            <button type="button" class="w-100 btn btn-lg btn-primary">Purchase</button>
+            <br>
+            <a href="/credits/5"><button type="button" class="w-100 btn btn-lg btn-primary">Purchase</button></a>
+    
           </div>
         </div>
       </div>
@@ -61,7 +63,7 @@
               <li>Help center access</li>
               <li>10% more credits</li>
             </ul>
-            <button type="button" class="w-100 btn btn-lg btn-primary">Purchase</button>
+            <a href="/credits/10"><button type="button" class="w-100 btn btn-lg btn-primary">Purchase</button></a>
           </div>
         </div>
       </div>
@@ -78,7 +80,7 @@
               <li>Help center access</li>
               <li>50% more credits</li>
             </ul>
-            <button type="button" class="w-100 btn btn-lg btn-primary">Purchase</button>
+            <a href="/credits/20"><button type="button" class="w-100 btn btn-lg btn-primary">Purchase</button></a>
           </div>
         </div>
       </div>
@@ -89,7 +91,40 @@
 
   </div>
 </div>
+<div class="row rounded-2">
+<div class="col-12">
+<div class="px-4 py-5 my-5 text-center bg-white rounded-3">
+    <h1 class="display-5 fw-bold">Custom Amount</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Every Dollar is 100 Credits</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+       <form method="POST" action=getpost>
+       {% csrf_token %}
+       <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">$</span>
+  </div>
+  <input name="amt" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+  <div class="input-group-append">
+    <span class="input-group-text">.00</span>
+  </div>
 </div>
+<button type="submit" class="btn btn-primary">Submit</button>
+       </form>
+
+
+      </div>
+    </div>
+     <h6>All payments are in AUD</h6>
+     <h7>Minimum Amount $2</h7>
+  </div>
+  
+  </div>
+  
+  </div>
+</div>
+
+
 <br>
 
 </div>
