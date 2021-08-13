@@ -1,6 +1,44 @@
 {% extends "PhamPhotosApp/base.html" %} {% block content %}
 
-<style></style>
+<style>
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  
+  border-top: none;
+
+
+</style>
 
 <div class="container">
   <div class="row text-here">
@@ -37,9 +75,23 @@
     
     </div>
   </div>
+ 
+
+
   <div class="row mb-5 bg-white rounded-3 p-3">
     <div class="col-md-12 bg-white rounded-3" >
-      <h1 class="pb-2 ">My Uploads</h1>
+         <!-- TESTING -->
+  <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">My Uploads</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Purchases</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Income</button>
+  <button class="tablinks" onclick="openCity(event, 'credit')">Credit</button>
+</div>
+
+
+
+<div id="London" class="tabcontent">
+   <h1 class=" ">My Uploads</h1>
       {% if uploads %}
       <table
         class="table table-sm table-bordered"
@@ -94,8 +146,10 @@
       <h3 class="">You have not uploaded any images</h3>
       {% endif %}
     </div>
+</div>
 
-    <div class="col-md-12 bg-white rounded-3">
+<div id="Paris" class="tabcontent">
+    
       <h1 class="">Purchases</h1>
       <table
         class="table table-sm table-bordered"
@@ -150,7 +204,10 @@
 
       {% endif %}
     
-      <div class="col-12 bg-white rounded">
+</div>
+
+<div id="Tokyo" class="tabcontent">
+   
 
         <h1 class="">Payment Log/Income</h1>
         {% if items %}
@@ -185,7 +242,10 @@
 
         {% endif %}
       </div>
-       <div class="col-12 bg-white rounded">
+
+
+    
+    <div id="credit" class="tabcontent">
 
         <h1 class="">Credit Payments</h1>
         {% if creditss %}
@@ -223,10 +283,33 @@
 
         {% endif %}
       </div>
+
+
+     
+
+  
+     
+     
       <div class="col-6"></div>
     </div>
   </div>
 
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
 
 
   {% endblock content %}
