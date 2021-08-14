@@ -37,9 +37,22 @@ class modusers(admin.ModelAdmin):
     list_display = ['user', 'tokens']
 
 
+class modpurchasess(admin.ModelAdmin):
+    list_display = ['User', 'video', 'date','paied']
+
+
+class modphotoss(admin.ModelAdmin):
+    list_display = ['video', 'approved', 'price']
+    actions = [approve,]  # <-- Add the list action function here
+
+
+
+    
+
+
 admin.site.register(photos, modphotos)
 admin.site.register(purchases,modpurchases)
 admin.site.register(users, modusers)
 admin.site.register(payments, modpayments)
-admin.site.register(videos)
-admin.site.register(videopurchases)
+admin.site.register(videos,modphotoss)
+admin.site.register(videopurchases,modpurchasess)
