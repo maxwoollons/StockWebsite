@@ -100,20 +100,24 @@
         style="width: 100%;"
       >
         <tr>
+        <th>ID</th>
           <th>Title</th>
           <th>Approved Status</th>
+          <th>Date Added</th>
           <th></th>
           <th>Delete</th>
         </tr>
 
         {% for b in uploads %}
         <tr>
+        <th>{{ b.id }}</th>
           <th>{{ b.title }}</th>
           {% if b.approved == True %}
           <th style="color: rgb(79, 224, 79)">{{ b.approved }}</th>
           {% else %}
           <th style="color: red">{{ b.approved }}</th>
           {% endif %}
+          <th>{{ b.added }}</th>
           <th>
             <a href="../{{ b.id }}"
               ><img

@@ -76,11 +76,11 @@ def ProfilePage(request):
    # photo_ids = photos.objects.all().filter(owner_id=request.user.id)
    # pic_owner = purchases.objects.values_list('price', flat=True).get(id=pk)
     user = User.objects.all().filter(id=request.user.id)
-    purchase = purchases.objects.all().filter(User=request.user.users)
+    purchase = purchases.objects.all().filter(User=request.user.users).order_by('-id')
     purchasess = purchases.objects.all()
-    uploads = photos.objects.all().filter(owner=request.user)
-    payment = payments.objects.all().filter(user=request.user)
-    credits = creditpurchases.objects.all().filter(user=request.user)
+    uploads = photos.objects.all().filter(owner=request.user).order_by('-id')
+    payment = payments.objects.all().filter(user=request.user).order_by('-id')
+    credits = creditpurchases.objects.all().filter(user=request.user).order_by('-id')
     
     return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
 
