@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm, ValidationError
-from .models import photos
+from .models import photos, videos
 from PIL import Image
 
 
@@ -22,7 +22,11 @@ class MediaSubmit(ModelForm):
         model = photos
         exclude = ('owner','approved')
 
-            
-        
-    
+
+
+class VideoSubmit(ModelForm):
+    class Meta:
+        model = videos
+        exclude = ('owner','approved')
+
                 

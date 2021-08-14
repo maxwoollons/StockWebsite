@@ -19,7 +19,8 @@ urlpatterns = [
     path('credits/', views.credits, name='credits'),
     path('credits/<int:amt>', views.purchasepage, name='credits-pur'),
     path('credits/getpost', views.cusamt, name='credits-pur'),
-    path('complete/', views.paymentcomplete, name='complete'),
+    path('complete/', views.paymentcomplete, name='complete'),\
+    path('video/', views.video, name='video'),
 
 
     

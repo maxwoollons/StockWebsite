@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 from django.db.models.fields.related import ForeignKey, ManyToManyField
 
+
+from .validators import file_size
+
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
 
@@ -64,6 +67,20 @@ class creditpurchases(models.Model):
     creditamount = models.FloatField(null=True, blank=True)
     cost = models.FloatField(null=True, blank=True)
     added = models.DateTimeField(auto_now=True)
+
+
+
+class videos(models.Model): #PHOTO
+    video = models.FileField(null=False, blank=False, upload_to="videos/", validators=[file_size])  
+    price = models.IntegerField()
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    added = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(User, on_delete=CASCADE)
+    cameratype = models.CharField(max_length=255, null=True, blank=True)
+    approved = models.BooleanField(default=False)
+    def __str__(self):
+        return str(self.id) + ' Approved:' + str(self.approved)
 
 
 

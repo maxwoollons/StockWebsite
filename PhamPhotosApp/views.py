@@ -2,9 +2,9 @@ from django.contrib.auth.models import User
 from django.forms.widgets import Media
 from django.http import request
 from django.shortcuts import redirect, render
-from .forms import UserRegistrationForm, MediaSubmit
+from .forms import UserRegistrationForm, MediaSubmit, VideoSubmit
 from django.contrib import messages
-from .models import photos, purchases, users, payments, creditpurchases
+from .models import photos, purchases, users, payments, creditpurchases, videos
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from PIL import Image
@@ -58,6 +58,7 @@ def register(request):
 @login_required
 def SubmitMedia(request):
     if request.method == 'POST':
+        form2 = VideoSubmit(request.POST,request.FILES)
         form = MediaSubmit(request.POST, request.FILES)
         if form.is_valid():
             ob = form.save(commit=False)
@@ -66,9 +67,17 @@ def SubmitMedia(request):
             username = form.cleaned_data.get('username')
             messages.success(request, f'account created for {username}!')
             return redirect('home')
+        if form2.is_valid():
+            ob = form2.save(commit=False)
+            ob.owner = request.user
+            ob.save()
+            username = form2.cleaned_data.get('username')
+            messages.success(request, f'account created for {username}!')
+            return redirect('video')
     else:
         form = MediaSubmit()
-    return render(request, 'PhamPhotosApp/submit.html', {'form':form})
+        form2 = VideoSubmit()
+    return render(request, 'PhamPhotosApp/submit.html', {'form':form,'form2':form2})
 
 
 @login_required
@@ -215,6 +224,10 @@ def paymentcomplete(request):
     database.save()
     return redirect('home')
         
+def video(request):
+    vids = videos.objects.all().filter(approved=True).order_by('-id')
+    return render(request, 'PhamPhotosApp/video.html',{'vids':vids})
+    
 
     
         
