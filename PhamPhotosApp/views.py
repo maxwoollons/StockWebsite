@@ -181,7 +181,7 @@ def purchasepage(request, amt):
         custom = True
         return render(request, 'PhamPhotosApp/purchasepage.html',{'cost':amt,'credits':toke,'deal':name_pack,'cus':custom})
     
-@login_required
+
 def cusamt(request):
     if request.method == 'POST':
         amt = request.POST.get("amt", "")
