@@ -290,5 +290,11 @@ def delvid(request, pk):
         redirect('home')
 
     
+def searchvid(request):
+        if request.method == 'GET' and request.GET.get('search'):
+            search = request.GET.get('search')
+            record = videos.objects.all().filter(title__icontains=search,approved=True)
+            amt = len(record)
+            return render(request, 'PhamPhotosApp/search.html',{'all':record, 'amount':amt})
         
     

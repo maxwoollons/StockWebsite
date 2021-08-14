@@ -24,7 +24,7 @@ urlpatterns = [
     path('video/<int:pk>',views.VideoDetail.as_view(template_name='PhamPhotosApp/videodetail.html') , name="viddetail"),
     path('video/purchase/<int:pk>', views.vidpurchase, name='videopur'),
     path('profile/del/v/<int:pk>', views.delvid, name='delvid'),
-
+    path('video/search/', views.searchvid, name='vidsearch'),
 
     
     
