@@ -84,15 +84,15 @@
     <div class="col-md-12 bg-white rounded-3" >
          <!-- TESTING -->
   <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')">My Uploads</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Purchases</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Income</button>
+  <button class="tablinks" onclick="openCity(event, 'upload')">My Uploads</button>
+  <button class="tablinks" onclick="openCity(event, 'purchase')">Purchases</button>
+  <button class="tablinks" onclick="openCity(event, 'income')">Income</button>
   <button class="tablinks" onclick="openCity(event, 'credit')">Credit</button>
 </div>
 
 
 
-<div id="London" class="tabcontent">
+<div id="upload" class="tabcontent">
    <h1 class=" ">My Uploads</h1>
       {% if uploads %}
       <table
@@ -122,7 +122,7 @@
                 alt="{{ b.title }}"/></a>
           </th>
           <th>
-            <a href="./del/{{ b.id }}"
+            <a href="./del/{{ b.id }}" onclick="return confirm('You are about to delete your photo, are you sure?')"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -150,7 +150,7 @@
     </div>
 </div>
 
-<div id="Paris" class="tabcontent">
+<div id="purchase" class="tabcontent">
     
       <h1 class="">Purchases</h1>
       <table
@@ -208,7 +208,7 @@
     
 </div>
 
-<div id="Tokyo" class="tabcontent">
+<div id="income" class="tabcontent">
    
 
         <h1 class="">Payment Log/Income</h1>
@@ -311,6 +311,16 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+</script>
+
+<script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
 </script>
 
 

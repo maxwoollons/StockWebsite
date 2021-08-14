@@ -29,7 +29,13 @@
         <h4>Pixels: {{obj.photo.height}}x{{obj.photo.width}}</h4>
         <h4>Made By: {{ obj.owner.username }}</h4>
         <h4>description: {{ obj.description }}</h4>
-        <a class="asdasda" href='purchase/{{ obj.id }}'><button class="btn btn-primary m-1 p1">Purchase</button></a>
+
+
+
+        <!-- Purchase buttton  -->
+        
+        <a class="asdasda" onclick="return confirm('You are about to purchase {{ obj.title }}, Are you sure?')" href='purchase/{{ obj.id }}'><button class="btn btn-primary m-1 p1">Purchase</button></a>
+        <!-- Purchase buttton  -->
         <a class="asdasda" href='/'><button class="btn btn-danger m-1 p1">Home</button></a>
       
       </div>
@@ -85,6 +91,15 @@
     }
 
   </script>
+  <script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+</script>
 
 
   {% endblock content %}
