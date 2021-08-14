@@ -2,17 +2,19 @@
 
 <style>
 
-
+.aaaddddwwewe{
+  color: black;
+}
 
 </style>
 
-<div class="container-fluid">
+<div class="container bg-white">
 
   <div class="row text-here">
    
       
       <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-10 aaaddddwwewe">
         <h1 class="p-2">{{ obj.title }}</h1>
         <center>
           <video
@@ -20,8 +22,8 @@
           id="my-video"
           class="video-js"
           preload="auto"
-          width="1280"
-          height="720"
+          width="1200"
+          height="650"
           poster=""
           data-setup="{}"
           muted=true
@@ -35,7 +37,7 @@
       
       </center>
       </div>
-      <div class="col-md-2 detailcoloum">
+      <div class="col-md-2 detailcoloum aaaddddwwewe">
         
         <h2>Image Details</h2>
         {% if obj.cameratype %}
@@ -45,7 +47,7 @@
         
         
         <h4>Made By: {{ obj.owner.username }}</h4>
-        <h4>description: {{ obj.description }}</h4>
+       
 
 
 

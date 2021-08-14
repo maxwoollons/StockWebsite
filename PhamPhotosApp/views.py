@@ -96,7 +96,7 @@ def ProfilePage(request):
 
     videopurchase = videopurchases.objects.all().filter(User=request.user.users).order_by('-id') #video purchases
     videoupload = videos.objects.all().filter(owner=request.user).order_by('-id') #video uploads
-    print(videoupload)
+   
 
 
   
@@ -150,7 +150,7 @@ def purchase(request, pk):
     owneruser = User.objects.get(id=pic_owner) #
     title = photos.objects.values_list('title', flat=True).get(id=pk)
     otokens = users.objects.values_list('tokens', flat=True).get(user=pic_owner)
-    print(pic_owner)
+    
     if request.user.id != pic_owner:
         if cost <= tokens:
             commission = cost*40/100
@@ -222,7 +222,7 @@ def cusamt(request):
 
 def paymentcomplete(request):
     body = json.loads(request.body)
-    print(body)
+    
     tokens = body['credits']
     current_credits = users.objects.values_list('tokens', flat=True).get(user=request.user)
     total = current_credits + float(tokens)
@@ -255,7 +255,7 @@ def vidpurchase(request,pk):
     owneruser = User.objects.get(id=pic_owner) #
     title = videos.objects.values_list('title', flat=True).get(id=pk)
     otokens = users.objects.values_list('tokens', flat=True).get(user=pic_owner)
-    print(pic_owner)
+  
     if request.user.id != pic_owner:
         if cost <= tokens:
             commission = cost*40/100
