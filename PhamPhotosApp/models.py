@@ -83,6 +83,16 @@ class videos(models.Model): #PHOTO
         return str(self.id) + ' Approved:' + str(self.approved)
 
 
+class videopurchases(models.Model):
+    User = models.ForeignKey(users, on_delete=CASCADE)
+    video = models.ForeignKey(videos, on_delete=CASCADE)
+    date = models.DateTimeField(auto_now=True)
+    downloaded = models.BooleanField()
+    paied = models.FloatField(null=True, blank=True)
+    def __str__(self):
+        return str(self.id) +  ' ' + str(self.User)
+
+
 
 
 

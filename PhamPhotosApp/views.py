@@ -4,7 +4,7 @@ from django.http import request
 from django.shortcuts import redirect, render
 from .forms import UserRegistrationForm, MediaSubmit, VideoSubmit
 from django.contrib import messages
-from .models import photos, purchases, users, payments, creditpurchases, videos
+from .models import photos, purchases, users, payments, creditpurchases, videos, videopurchases
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from PIL import Image
@@ -90,18 +90,27 @@ def ProfilePage(request):
     uploads = photos.objects.all().filter(owner=request.user).order_by('-id')
     payment = payments.objects.all().filter(user=request.user).order_by('-id')
     credits = creditpurchases.objects.all().filter(user=request.user).order_by('-id')
-    print(payment.exists())
+
+    #video short_description
+
+
+    videopurchase = videopurchases.objects.all().filter(User=request.user.users).order_by('-id') #video purchases
+    videoupload = videos.objects.all().filter(owner=request.user).order_by('-id') #video uploads
+    print(videoupload)
+
+
+  
     if payment.exists():
         if credits.exists():
-            return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
+            return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits,'videopurchase':videopurchase,'videoupload':videoupload})
 
         else:
             credits = False
-            return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
+            return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits,'videopurchase':videopurchase,'videoupload':videoupload})
 
     else:
         payment = False
-        return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
+        return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits,'videopurchase':videopurchase,'videoupload':videoupload})
     
     
 
@@ -149,7 +158,7 @@ def purchase(request, pk):
             paied = cost-commission
             new = tokens - cost
             user.update(tokens=new)
-            p = purchases(User=request.user.users,Photo_id=pk,downloaded=False,paied=paied)
+            p = videopurchases(User=request.user.users,Photo_id=pk,downloaded=False,paied=paied)
             p.save()
             
             ouser.update(tokens=onew)
@@ -227,7 +236,58 @@ def paymentcomplete(request):
 def video(request):
     vids = videos.objects.all().filter(approved=True).order_by('-id')
     return render(request, 'PhamPhotosApp/video.html',{'vids':vids})
+
+
+
+class VideoDetail(DetailView):
+   
+    context_object_name='obj'
+    template_name="videodetail.html"
+    model = videos
+
+@login_required
+def vidpurchase(request,pk):
+    tokens = request.user.users.tokens
+    user = users.objects.all().filter(user_id=request.user.id)
+    pic_owner = videos.objects.values_list('owner_id', flat=True).get(id=pk)
+    cost = videos.objects.values_list('price', flat=True).get(id=pk)
+    ouser = users.objects.all().filter(user_id=pic_owner) #
+    owneruser = User.objects.get(id=pic_owner) #
+    title = videos.objects.values_list('title', flat=True).get(id=pk)
+    otokens = users.objects.values_list('tokens', flat=True).get(user=pic_owner)
+    print(pic_owner)
+    if request.user.id != pic_owner:
+        if cost <= tokens:
+            commission = cost*40/100
+            onew = otokens + (cost - commission)
+            paied = cost-commission
+            new = tokens - cost
+            user.update(tokens=new)
+            p = videopurchases(User=request.user.users,video_id=pk,downloaded=False,paied=paied)
+            p.save()
+            
+            ouser.update(tokens=onew)
+            q = payments(user=owneruser,amount=paied,title=title)
+            q.save()
+            
+            return redirect('success')
+        else:
+            return redirect('home')
+             
+             
+            
+    else:
+        return redirect('home')
     
+
+
+def delvid(request, pk):
+    if videos.objects.all().filter(id=pk,owner=request.user):
+        vid = videos.objects.all().filter(id=pk,owner=request.user)
+        vid.delete()
+        return render(request, 'PhamPhotosApp/delete.html') 
+    else:
+        redirect('home')
 
     
         

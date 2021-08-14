@@ -19,8 +19,11 @@ urlpatterns = [
     path('credits/', views.credits, name='credits'),
     path('credits/<int:amt>', views.purchasepage, name='credits-pur'),
     path('credits/getpost', views.cusamt, name='credits-pur'),
-    path('complete/', views.paymentcomplete, name='complete'),\
+    path('complete/', views.paymentcomplete, name='complete'),
     path('video/', views.video, name='video'),
+    path('video/<int:pk>',views.VideoDetail.as_view(template_name='PhamPhotosApp/videodetail.html') , name="viddetail"),
+    path('video/purchase/<int:pk>', views.vidpurchase, name='videopur'),
+    path('profile/del/v/<int:pk>', views.delvid, name='delvid'),
 
 
     

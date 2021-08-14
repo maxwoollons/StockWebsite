@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import users, purchases, photos, payments, videos
+from .models import users, purchases, photos, payments, videos, videopurchases
 from django.contrib import messages
 from django.utils.translation import ngettext
 
@@ -42,3 +42,4 @@ admin.site.register(purchases,modpurchases)
 admin.site.register(users, modusers)
 admin.site.register(payments, modpayments)
 admin.site.register(videos)
+admin.site.register(videopurchases)
