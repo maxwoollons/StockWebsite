@@ -81,8 +81,20 @@ def ProfilePage(request):
     uploads = photos.objects.all().filter(owner=request.user).order_by('-id')
     payment = payments.objects.all().filter(user=request.user).order_by('-id')
     credits = creditpurchases.objects.all().filter(user=request.user).order_by('-id')
+    print(payment.exists())
+    if payment.exists():
+        if credits.exists():
+            return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
+
+        else:
+            credits = False
+            return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
+
+    else:
+        payment = False
+        return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
     
-    return render(request, 'PhamPhotosApp/profile.html', {'profile':user,'uploads':uploads,'pur':purchase,'num':purchasess,'items':payment,'creditss':credits})
+    
 
 
 
