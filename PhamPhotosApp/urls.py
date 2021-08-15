@@ -26,6 +26,10 @@ urlpatterns = [
     path('profile/del/v/<int:pk>', views.delvid, name='delvid'),
     path('video/search/', views.searchvid, name='vidsearch'),
     path('user/profile/<int:pk>', views.profsearch, name='profilesearch'),
+    path('exchange/', views.exchangepage, name='exchange'),
+    path('del/ex/<int:pk>', views.deleteex, name='exchange'),
+    
+    
     
     
     

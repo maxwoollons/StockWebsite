@@ -2,9 +2,9 @@ from django.contrib.auth.models import User
 from django.forms.widgets import Media
 from django.http import request
 from django.shortcuts import redirect, render
-from .forms import UserRegistrationForm, MediaSubmit, VideoSubmit
+from .forms import UserRegistrationForm, MediaSubmit, VideoSubmit, ExchangeSubmit
 from django.contrib import messages
-from .models import photos, purchases, users, payments, creditpurchases, videos, videopurchases
+from .models import photos, purchases, users, payments, creditpurchases, videos, videopurchases, exchange
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from PIL import Image
@@ -309,3 +309,38 @@ def profsearch(request,pk):
     return render(request, 'PhamPhotosApp/profilesearch.html',{'vid':video, 'pic':photo, 'user':owner_user,'amt':amt})
         
     
+@login_required
+def exchangepage(request):
+    tokens = users.objects.values_list('tokens', flat=True).get(user_id=request.user.id)
+    worth = tokens / 100 * 0.50
+    past = exchange.objects.all().filter(user=request.user)
+    if request.method == 'POST':
+        form = ExchangeSubmit(request.POST)
+        
+        if form.is_valid():
+            
+            username = form.cleaned_data.get('amount')
+            tokens = users.objects.values_list('tokens', flat=True).get(id=request.user.id)
+            print(username)
+            print(tokens)
+            if username >= tokens:
+                ob = form.save(commit=False)
+                ob.user = request.user
+                ob.save()
+                return redirect('exchange')
+            else:
+                return redirect('home')
+    else:
+        form = ExchangeSubmit()
+    return render(request, 'PhamPhotosApp/exchange.html',{'form':form,'tokens':tokens,'worth':worth,'past':past})
+
+
+
+def deleteex(request,pk):
+    if exchange.objects.all().filter(id=pk,user=request.user):
+        img = exchange.objects.all().filter(id=pk,user=request.user)
+        img.delete()
+        return redirect('exchange')
+    else:
+        return redirect('exchange')
+

@@ -129,7 +129,17 @@ class videopurchases(models.Model):
     paied = models.FloatField(null=True, blank=True)
     def __str__(self):
         return str(self.id) +  ' ' + str(self.User)
-
+    
+    
+    
+    
+class exchange(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    amount = models.IntegerField(null=False,blank=False)
+    paypal = models.EmailField(null=False,blank=False)
+    time = models.DateTimeField(auto_now=True)
+    complete = models.BooleanField(default=False)
+   
 
 
 
