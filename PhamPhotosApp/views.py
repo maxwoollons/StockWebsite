@@ -63,6 +63,7 @@ def SubmitMedia(request):
         if form.is_valid():
             ob = form.save(commit=False)
             ob.owner = request.user
+            ob.price = 50
             ob.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'account created for {username}!')
@@ -70,6 +71,7 @@ def SubmitMedia(request):
         if form2.is_valid():
             ob = form2.save(commit=False)
             ob.owner = request.user
+            ob.price = 100
             ob.save()
             username = form2.cleaned_data.get('username')
             messages.success(request, f'account created for {username}!')

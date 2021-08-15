@@ -20,13 +20,13 @@ class UserRegistrationForm(UserCreationForm):
 class MediaSubmit(ModelForm):
     class Meta:
         model = photos
-        exclude = ('owner','approved')
+        exclude = ('owner','approved','price')
 
 
 
 class VideoSubmit(ModelForm):
     class Meta:
         model = videos
-        exclude = ('owner','approved')
+        exclude = ('owner','approved','price')
 
                 
