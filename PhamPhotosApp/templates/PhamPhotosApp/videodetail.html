@@ -47,7 +47,7 @@
         
         <h4><strong>Category:</strong> {{ obj.category }}</h4>
         <h4><strong>Video Format:</strong> {{ obj.format }}
-        <h4><strong>Made By:</strong> {{ obj.owner.username }}</h4>
+        <h4><strong>Made By:</strong> <a href="/user/profile/{{obj.owner.id}}">{{ obj.owner.username }}</a></h4>
        
 
 

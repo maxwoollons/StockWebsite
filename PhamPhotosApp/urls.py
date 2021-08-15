@@ -25,7 +25,7 @@ urlpatterns = [
     path('video/purchase/<int:pk>', views.vidpurchase, name='videopur'),
     path('profile/del/v/<int:pk>', views.delvid, name='delvid'),
     path('video/search/', views.searchvid, name='vidsearch'),
-
+    path('user/profile/<int:pk>', views.profsearch, name='profilesearch'),
     
     
     

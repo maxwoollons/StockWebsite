@@ -6,19 +6,19 @@
 
 </style>
 
-<div class="container">
+<div class="container bg-white">
 
   <div class="row text-here">
    
       
       <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-10 text-dark">
         <h1 class="p-2">{{ obj.title }}</h1>
         <center>
         <img id="myImg" src="{{ obj.large_image_thumbnail.url }}" alt="{{ obj.title }}" style="max-width: 100%;">
       </center>
       </div>
-      <div class="col-md-2 detailcoloum">
+      <div class="col-md-2 detailcoloum text-dark">
         
         <h2>Image Details</h2>
         {% if obj.cameratype %}
@@ -26,9 +26,9 @@
         {% endif %}
         <h4><strong>Credits:</strong> {{ obj.price }}</h4>
         
-        <h4>Pixels: {{obj.photo.width}}x{{obj.photo.height}}</h4>
-        <h4>Category: {{ obj.category }}</h4>
-        <h4>Made By: {{ obj.owner.username }}</h4>
+        <h4><strong>Date:</strong> {{ obj.}}Pixels: {{obj.photo.width}}x{{obj.photo.height}}</h4>
+        <h4><strong>Category:</strong> {{ obj.category }}</h4>
+        <h4><strong>Description:</strong> {{ obj.description }} Made By: <a href="/user/profile/{{obj.owner.id}}">{{ obj.owner.username }}</a></h4>
    
 
 

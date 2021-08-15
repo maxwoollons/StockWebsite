@@ -298,5 +298,14 @@ def searchvid(request):
             record = videos.objects.all().filter(title__icontains=search,approved=True)
             amt = len(record)
             return render(request, 'PhamPhotosApp/search.html',{'all':record, 'amount':amt})
+
+
+
+def profsearch(request,pk):
+    owner_user = User.objects.get(id=pk)
+    photo = photos.objects.all().filter(owner_id=pk,approved=True)
+    video = videos.objects.all().filter(owner_id=pk,approved=True)
+    amt = len(photo)+len(video)
+    return render(request, 'PhamPhotosApp/profilesearch.html',{'vid':video, 'pic':photo, 'user':owner_user,'amt':amt})
         
     
