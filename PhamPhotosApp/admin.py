@@ -20,7 +20,7 @@ approve.short_description = 'Quickly Accept Images'
 
 
 class modphotos(admin.ModelAdmin):
-    list_display = ['photo', 'approved', 'price']
+    list_display = ['title','photo', 'approved', 'price']
     actions = [approve,]  # <-- Add the list action function here
 
 
@@ -42,7 +42,7 @@ class modpurchasess(admin.ModelAdmin):
 
 
 class modphotoss(admin.ModelAdmin):
-    list_display = ['video', 'approved', 'price']
+    list_display = ['title','video', 'approved', 'price']
     actions = [approve,]  # <-- Add the list action function here
 
 
