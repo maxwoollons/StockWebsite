@@ -15,6 +15,42 @@ from imagekit.processors import ResizeToFill, SmartResize
 from django.contrib.auth.models import User
 User._meta.get_field('email')._unique = True
 
+CHOICES = (
+            ('Animals and Wild Life', 'Animals and Wild Life'),  
+            ('Arts', 'Arts'),
+            ('Business & Professions', 'Business & Professions'),
+            ('Coronavirus/ Pandemic', 'Coronavirus/ Pandemic'),
+            ('Education', 'Education'),
+            ('Elements of Nature', 'Elements of Nature'),
+            ('Food', 'Food'),
+            ('Green Planet', 'Green Planet'),
+            ('Home', 'Home'),
+            ('Industry', 'Industry'),
+            ('Lifestyle', 'Lifestyle'),
+            ('Love', 'Love'),
+            ('Landscapes', 'Landscapes'),
+            ('Medical & Health', 'Medical & Health'),
+            ('People', 'People'),
+            ('Religion & Traditions', 'Religion & Traditions'),
+            ('Sport & Fitness', 'Sport & Fitness'),
+            ('Technology & Science', 'Technology & Science'),
+            ('Motion or Time Lapse','Motion or Time Lapse'),
+            ('Travel & World', 'Travel & World'),
+            ('Transportation', 'Transportation'),
+            ('Urban & City', 'Urban & City'),
+            ('Vintage', 'Vintage'),
+
+)
+
+CHOICES_FORMAT = (
+            ('4K (UHD)', '4K (UHD)'),
+            ('2K', '2K'),
+            ('1080p (FHD)', '1080p (FHD)'),  
+          
+
+)
+
+
 
 class users(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -31,6 +67,7 @@ class photos(models.Model): #PHOTO
     title = models.CharField(max_length=255)
     added = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=CASCADE)
+    category = models.CharField(max_length=255, choices=CHOICES)
     cameratype = models.CharField(max_length=255, null=True, blank=True)
     approved = models.BooleanField(default=False)
     image_thumbnail = ImageSpecField(source="photo",processors=[ResizeToFill(800,800)],format="JPEG",options={'quality':60})
@@ -76,6 +113,8 @@ class videos(models.Model): #PHOTO
     title = models.CharField(max_length=255)
     added = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=CASCADE)
+    category = models.CharField(max_length=255, choices=CHOICES)
+    format = models.CharField(max_length=255, choices=CHOICES_FORMAT)
     cameratype = models.CharField(max_length=255, null=True, blank=True)
     approved = models.BooleanField(default=False)
     def __str__(self):
