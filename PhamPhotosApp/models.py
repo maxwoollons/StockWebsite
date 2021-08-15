@@ -34,6 +34,7 @@ class photos(models.Model): #PHOTO
     cameratype = models.CharField(max_length=255, null=True, blank=True)
     approved = models.BooleanField(default=False)
     image_thumbnail = ImageSpecField(source="photo",processors=[ResizeToFill(800,800)],format="JPEG",options={'quality':60})
+    large_image_thumbnail = ImageSpecField(source="photo",format="JPEG",options={'quality':60})
     def __str__(self):
         return str(self.id) + ' Approved:' + str(self.approved)
 
