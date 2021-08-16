@@ -37,7 +37,7 @@ class ExchangeSubmit(ModelForm):
         model = exchange
         fields = ('amount','paypal')
         labels = {
-            "amount": "Credits To exchange (credits)",
+            "amount": "Amount to withdraw ($AUD)",
             "paypal": "Paypal Email",
         }
         

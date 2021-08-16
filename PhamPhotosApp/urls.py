@@ -28,6 +28,8 @@ urlpatterns = [
     path('user/profile/<int:pk>', views.profsearch, name='profilesearch'),
     path('exchange/', views.exchangepage, name='exchange'),
     path('del/ex/<int:pk>', views.deleteex, name='exchange'),
+    path('c/<str:pk>', views.cat, name='categories'),
+    path('vc/<str:pk>', views.vcat, name='videocategories'),
     
     
     

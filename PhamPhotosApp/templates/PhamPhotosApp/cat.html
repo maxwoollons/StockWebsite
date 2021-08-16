@@ -14,7 +14,7 @@
   <div class="container-fluid py-5 niii">
     <h1 class="display-5 fw-bold text-here">Explore Stock Footage</h1>
     <video class="video" autoplay muted loop>
-      <source src="media\images\banner.mp4" type="video/mp4">
+      <source src="..\media\images\banner.mp4" type="video/mp4">
     </video>
     <center>
       <form method="GET" class="text-align-center form-top" action="{% url 'search' %}"><input name="search"
@@ -32,16 +32,14 @@
 
 <div class="row">
   <div class="col-xl-10 flexy">
-    {% if messeges %}
-    {% for messege in messeges %}
-    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-    {% endif %}
+    <!-- Top of images -->
+    <h3 class="white-text fw-bold">Category: {{cat}}</h3>
 
+    {% if photos %}
     {% for a in photos %}
 
     <div class="box">
-      <a class="image-home" href='{{ a.id }}'>
+      <a class="image-home" href='../{{ a.id }}'>
 
         <img class="display-image" src='{{ a.image_thumbnail.url }}' />
 
@@ -52,6 +50,9 @@
     </div>
 
     {% endfor %}
+    {% else %}
+    <h4 class="text-white">No photos in this category...</h4>
+    {% endif %}
   </div>
 
   <div class="col-xl-2 sidebarhome">
@@ -69,7 +70,7 @@
       <!-- Category -->
       <h4 class="text-white m-3">Categories</h4>
       <a href="/c/arts"><button class="btn btn-outline-info m-1">Arts</button></a>
-      <a href="/c/Coronavirus & Pandemic"><button class="btn btn-outline-info m-1">Coronavirus/ Pandemic</button></a>
+      <a href="/c/Coronavirus& Pandemic"><button class="btn btn-outline-info m-1">Coronavirus/ Pandemic</button></a>
       <a href="/c/education"><button class="btn btn-outline-info m-1">Education</button></a>
       <a href="/c/Elements of Nature"><button class="btn btn-outline-info m-1">Elements of Nature</button></a>
       <a href="/c/food"><button class="btn btn-outline-info m-1">Food</button></a>

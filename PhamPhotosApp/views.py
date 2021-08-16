@@ -130,7 +130,7 @@ def search(request):
             search = request.GET.get('search')
             record = photos.objects.all().filter(title__icontains=search,approved=True)
             amt = len(record)
-            return render(request, 'PhamPhotosApp/search.html',{'all':record, 'amount':amt})
+            return render(request, 'PhamPhotosApp/search.html',{'all':record, 'amount':amt,'search':search})
     
 @login_required
 def delete(request, pk):
@@ -297,7 +297,8 @@ def searchvid(request):
             search = request.GET.get('search')
             record = videos.objects.all().filter(title__icontains=search,approved=True)
             amt = len(record)
-            return render(request, 'PhamPhotosApp/search.html',{'all':record, 'amount':amt})
+            return render(request, 'PhamPhotosApp/searchvid.html',{'all':record, 'amount':amt,'search':search})
+
 
 
 
@@ -319,17 +320,20 @@ def exchangepage(request):
         
         if form.is_valid():
             
-            username = form.cleaned_data.get('amount')
+            amount = form.cleaned_data.get('amount')
             tokens = users.objects.values_list('tokens', flat=True).get(id=request.user.id)
-            print(username)
+            print(amount)
             print(tokens)
-            if username >= tokens:
-                ob = form.save(commit=False)
-                ob.user = request.user
-                ob.save()
-                return redirect('exchange')
+            if amount >= 50:
+                if amount <= worth:
+                    ob = form.save(commit=False)
+                    ob.user = request.user
+                    ob.save()
+                    return redirect('exchange')
+                else:
+                    return redirect('exchange')
             else:
-                return redirect('home')
+                return redirect('exchange')
     else:
         form = ExchangeSubmit()
     return render(request, 'PhamPhotosApp/exchange.html',{'form':form,'tokens':tokens,'worth':worth,'past':past})
@@ -344,3 +348,14 @@ def deleteex(request,pk):
     else:
         return redirect('exchange')
 
+
+def cat(request,pk):
+    cat = pk
+    photo = photos.objects.all().filter(category__icontains=pk)
+    return render(request, 'PhamPhotosApp/cat.html', {'cat':cat,'photos':photo})
+
+
+def vcat(request,pk):
+    cat = pk
+    video = videos.objects.all().filter(category__icontains=pk)
+    return render(request, 'PhamPhotosApp/vcat.html', {'cat':cat,'photos':video})

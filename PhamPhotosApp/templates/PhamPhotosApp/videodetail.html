@@ -36,10 +36,11 @@
         </video>
       
       </center>
+      <h4><strong>By:</strong> <a href="/user/profile/{{obj.owner.id}}">{{ obj.owner.username }}</a></h4>
       </div>
       <div class="col-md-2 detailcoloum aaaddddwwewe">
         
-        <h2>Image Details</h2>
+        <h2 class="mt-5">Image Details</h2>
         {% if obj.cameratype %}
         <h4><strong>Cameratype:</strong> {{ obj.cameratype }}</h4>
         {% endif %}
@@ -47,8 +48,8 @@
         
         <h4><strong>Category:</strong> {{ obj.category }}</h4>
         <h4><strong>Video Format:</strong> {{ obj.format }}
-        <h4><strong>Made By:</strong> <a href="/user/profile/{{obj.owner.id}}">{{ obj.owner.username }}</a></h4>
        
+          <br>
 
 
 
