@@ -351,11 +351,11 @@ def deleteex(request,pk):
 
 def cat(request,pk):
     cat = pk
-    photo = photos.objects.all().filter(category__icontains=pk)
+    photo = photos.objects.all().filter(category__icontains=pk,approved=True)
     return render(request, 'PhamPhotosApp/cat.html', {'cat':cat,'photos':photo})
 
 
 def vcat(request,pk):
     cat = pk
-    video = videos.objects.all().filter(category__icontains=pk)
+    video = videos.objects.all().filter(category__icontains=pk,approved=True)
     return render(request, 'PhamPhotosApp/vcat.html', {'cat':cat,'photos':video})
