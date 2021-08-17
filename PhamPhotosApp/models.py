@@ -139,6 +139,17 @@ class exchange(models.Model):
     paypal = models.EmailField(null=False,blank=False)
     time = models.DateTimeField(auto_now=True)
     complete = models.BooleanField(default=False)
+    
+    
+class savedphoto(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    image = models.ForeignKey(photos, on_delete=CASCADE)
+    
+class savedvideo(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    image = models.ForeignKey(videos, on_delete=CASCADE)
+    
+
    
 
 

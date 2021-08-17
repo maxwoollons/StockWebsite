@@ -14,8 +14,7 @@
    
       
       <div class="row">
-      <div class="col-md-10 aaaddddwwewe">
-        <h1 class="p-2">{{ obj.title }}</h1>
+      <div class="col-md-10 aaaddddwwewe p-2 pb-2">
         <center>
           <video
           style="max-width:100%;max-height:100%;"
@@ -36,10 +35,10 @@
         </video>
       
       </center>
-      <h4><strong>By:</strong> <a href="/user/profile/{{obj.owner.id}}">{{ obj.owner.username }}</a></h4>
+      <h4 class="p-4"><strong>By:</strong> <a href="/user/profile/{{obj.owner.id}}">{{ obj.owner.username }}</a></h4>
       </div>
       <div class="col-md-2 detailcoloum aaaddddwwewe">
-        
+        <h1 class="">{{ obj.title }}</h1>
         <h2 class="mt-5">Image Details</h2>
         {% if obj.cameratype %}
         <h4><strong>Cameratype:</strong> {{ obj.cameratype }}</h4>
@@ -48,13 +47,16 @@
         
         <h4><strong>Category:</strong> {{ obj.category }}</h4>
         <h4><strong>Video Format:</strong> {{ obj.format }}
-       
+          <br>
           <br>
 
 
 
         <!-- Purchase buttton  -->
-        
+        {% if user.is_authenticated %}
+        <a class="" href='/savevid/{{obj.id}}'><button class="btn btn-primary m-1 p1">Save</button></a>
+        {% else %}
+        {% endif %}
         <a class="asdasda" onclick="return confirm('You are about to purchase {{ obj.title }}, Are you sure?')" href='purchase/{{ obj.id }}'><button class="btn btn-primary m-1 p1">Purchase</button></a>
         <!-- Purchase buttton  -->
         <a class="asdasda" href='/'><button class="btn btn-danger m-1 p1">Home</button></a>

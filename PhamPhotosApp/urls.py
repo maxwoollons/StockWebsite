@@ -30,7 +30,11 @@ urlpatterns = [
     path('del/ex/<int:pk>', views.deleteex, name='exchange'),
     path('c/<str:pk>', views.cat, name='categories'),
     path('vc/<str:pk>', views.vcat, name='videocategories'),
-    
+    path('savephoto/<int:pk>', views.psave, name='psave'),
+    path('saved/', views.saved, name='saved'),
+    path('savevid/<int:pk>', views.vsave, name='vsave'),
+    path('dsp/<int:pk>', views.dsp, name='dsp'),
+    path('dsv/<int:pk>', views.dsv, name='dsv'),
     
     
     

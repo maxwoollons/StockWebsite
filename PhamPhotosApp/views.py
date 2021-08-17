@@ -4,7 +4,7 @@ from django.http import request
 from django.shortcuts import redirect, render
 from .forms import UserRegistrationForm, MediaSubmit, VideoSubmit, ExchangeSubmit
 from django.contrib import messages
-from .models import photos, purchases, users, payments, creditpurchases, videos, videopurchases, exchange
+from .models import photos, purchases, users, payments, creditpurchases, videos, videopurchases, exchange, savedphoto, savedvideo
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from PIL import Image
@@ -307,7 +307,7 @@ def profsearch(request,pk):
     photo = photos.objects.all().filter(owner_id=pk,approved=True)
     video = videos.objects.all().filter(owner_id=pk,approved=True)
     amt = len(photo)+len(video)
-    return render(request, 'PhamPhotosApp/profilesearch.html',{'vid':video, 'pic':photo, 'user':owner_user,'amt':amt})
+    return render(request, 'PhamPhotosApp/profilesearch.html',{'vid':video, 'pic':photo, 'userr':owner_user,'amt':amt})
         
     
 @login_required
@@ -359,3 +359,53 @@ def vcat(request,pk):
     cat = pk
     video = videos.objects.all().filter(category__icontains=pk,approved=True)
     return render(request, 'PhamPhotosApp/vcat.html', {'cat':cat,'photos':video})
+
+
+def psave(request,pk):
+    photo_id = pk
+    user = request.user
+    if savedphoto.objects.all().filter(user=user,image_id=photo_id):
+        return redirect('saved')
+    else:
+    
+        h = savedphoto(user=user,image_id=photo_id)
+        h.save() 
+        return redirect('saved')
+    
+@login_required
+def saved(request):
+    user = request.user
+    img = savedphoto.objects.all().filter(user=user) 
+    vid = savedvideo.objects.all().filter(user=user) 
+    
+    return render(request, 'PhamPhotosApp/saved.html',{'photo':img,'video':vid})
+
+
+def vsave(request,pk):
+    photo_id = pk
+    user = request.user
+    if savedvideo.objects.all().filter(user=user,image_id=photo_id):
+        return redirect('saved')
+    else:
+    
+        h = savedvideo(user=user,image_id=photo_id)
+        h.save() 
+        return redirect('saved')
+    
+    
+def dsp(request,pk):
+    if savedphoto.objects.all().filter(id=pk,user=request.user):
+        img = savedphoto.objects.all().filter(id=pk,user=request.user)
+        img.delete()
+        return redirect('saved')
+    else:
+        return redirect('saved')
+    
+    
+def dsv(request,pk):
+    if savedvideo.objects.all().filter(id=pk,user=request.user):
+        img = savedvideo.objects.all().filter(id=pk,user=request.user)
+        img.delete()
+        return redirect('saved')
+    else:
+        return redirect('saved')
