@@ -93,7 +93,7 @@ def ProfilePage(request):
     payment = payments.objects.all().filter(user=request.user).order_by('-id')
     credits = creditpurchases.objects.all().filter(user=request.user).order_by('-id')
 
-    #video short_description
+    
 
 
     videopurchase = videopurchases.objects.all().filter(User=request.user.users).order_by('-id') #video purchases
