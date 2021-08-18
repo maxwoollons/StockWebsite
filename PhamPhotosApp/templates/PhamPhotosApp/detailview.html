@@ -1,0 +1,116 @@
+{% extends "PhamPhotosApp/base.html" %} {% block content %}
+
+<style>
+
+
+
+</style>
+
+<div class="container bg-white">
+
+  <div class="row text-here">
+   
+      
+      <div class="row pt-3">
+      <div class="col-md-10 text-dark">
+        
+        <center>
+        <img id="myImg" src="{{ obj.large_image_thumbnail.url }}" alt="{{ obj.title }}" style="max-width: 100%;">
+        
+      </center>
+      <h4 class="p-4"><strong>By</strong> <a href="/user/profile/{{obj.owner.id}}">{{ obj.owner.username }}</a></h4>
+      </div>
+      <div class="col-md-2 detailcoloum text-dark">
+        <h1 class=""><strong>{{ obj.title }}</strong></h1>
+        <h2>Image Details</h2>
+        {% if obj.cameratype %}
+        <h4><strong>Cameratype:</strong> {{ obj.cameratype }}</h4>
+        {% endif %}
+        <h4><strong>Credits:</strong> {{ obj.price }}</h4>
+        
+        <h4><strong>Pixels:</strong> {{obj.photo.width}}x{{obj.photo.height}}</h4>
+        <h4><strong>Category:</strong> {{ obj.category }}</h4>
+        <br>
+        
+        {% if user.is_authenticated %}
+        <a href="/savephoto/{{obj.id}}"><button class="btn btn-primary" style="width: 150px;">Bookmark</button></a>
+        {%else%}
+        {% endif %}
+          
+       
+         
+   
+
+
+
+       
+        
+        <a class="asdasda" onclick="return confirm('You are about to purchase {{ obj.title }}, Are you sure?')" href='purchase/{{ obj.id }}'><button style="width: 150px;" class="btn btn-primary m-1 p1">Purchase</button></a><br>
+        
+        <a class="asdasda" href='/'><button style="width: 150px;" class="btn btn-danger m-1 p1">Home</button></a>
+      
+      </div>
+    </div>
+     <div class="row">
+    <div class="col-12 asdasdgf">
+     <span class="p-3"></span>
+    </div>
+    </div>
+      
+    
+      <div id="myModal" class="modal">
+
+        
+        <span class="close">&times;</span>
+
+        
+        <img class="modal-content" id="img01">
+
+        
+        <div id="caption"></div> <br>
+      </div>
+
+
+
+
+
+
+      
+    </div>
+  </div>
+
+
+
+  <script>
+   
+    var modal = document.getElementById("myModal");
+
+  
+    var img = document.getElementById("myImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function () {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+  </script>
+  <script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+</script>
+
+
+  {% endblock content %}

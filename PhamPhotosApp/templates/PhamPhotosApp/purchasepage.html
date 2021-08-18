@@ -1,0 +1,124 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="main-reg">
+
+
+{% extends "PhamPhotosApp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+  
+  
+  <div class="px-4 py-5 my-5 text-center bg-white rounded-3">
+    <img class="d-block mx-auto mb-4" src="https://i.imgur.com/TixRqpj.gif" alt="" width="100" height="100">
+    <h1 class="display-5 fw-bold">Ultimate Imagination Credits</h1>
+    <div class="col-lg-6 mx-auto">
+      <h4 class="lead mb-4">Your are purchasing the following:</h4>
+      {% if cus %}
+        <h5 class="lead mb-4">{{deal}} of ${{cost}} for the user {{user.username}}</h5>
+         <h5>You get {{credits}}, Credits<br></h5>
+      {% else %}
+      <h5 class="lead mb-4">{{deal}} for the user {{user.username}}</h5>
+      <h5>You get {{credits}}, Credits</h5><br>
+      {% endif %}
+
+        <div id="paypal-button-container"></div>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZGGlqqcpd6rrfvPmqvYJT3TyXF53SbTjDBywZNLovNvsaLIlcC8NeZ6XN0HsTNCwH2Qs8MtbMQwLo5j&currency=AUD"></script>
+              <!-- CLIENT ID ^-->
+    <script>        
+        function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              const cookies = document.cookie.split(';');
+              for (let i = 0; i < cookies.length; i++) {
+                  const cookie = cookies[i].trim();
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+      }
+      const csrftoken = getCookie('csrftoken');
+
+
+      function completeOrder(){
+        var url = "{% url 'complete' %}"
+        var tokens = '{{credits}}'
+        var cost = '{{cost}}'
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+          },
+          body: JSON.stringify({'credits':tokens,'cost':cost})
+
+        }
+
+        )
+
+
+
+      }
+
+
+        
+
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '{{ cost }}'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+                    // Successful capture! For demo purposes:
+                   
+                    const element = document.getElementById('paypal-button-container');
+                    element.innerHTML = '';
+                    element.innerHTML = '<h3 style="color:rgb(72, 209, 38);">Thank you for your payment!</h3>';
+                    
+                    completeOrder()
+                    
+                });
+            }
+
+
+        }).render('#paypal-button-container');
+    </script>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+
+      <a href="/credits"><button class="btn btn-primary mt-2">Go Back</button></a>
+   
+      </div>
+    </div>
+  </div>
+    
+
+  </div>
+</div>
+</div>
+<br>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,345 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.spacer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+
+
+.register {
+    background-color: rgb(51, 51, 51);
+    padding: 10px;
+    border: 2px rgb(51, 51, 51) solid;
+    border-radius: 10px;
+}
+
+
+
+.icon-img{
+    border-radius: 20px;
+   text-align: center;
+    width: 30vw;
+}
+
+
+@media screen and (max-width: 800px) {
+    .icon-img{
+        border-radius: 20px;
+       text-align: center;
+        width: 50vw;
+    }
+
+}
+
+.iconn{
+    text-align: center;
+    padding: 20px;
+}
+
+.main-reg {
+    background-color: rgb(56, 56, 56);
+}
+
+
+
+
+.img-box {
+    width: 220px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+
+
+
+.bar {
+    width: 80%;
+    text-align: left;
+    height: 60px;
+    border-radius: 25px;
+    outline: none;
+    font-size: 24px;
+    padding-left: 25px;
+}
+
+
+
+
+
+.form-top {
+    width: 80%;
+    text-align: center;
+}
+
+.niii {
+    text-align: center;
+}
+
+.search-button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    text-decoration: none;
+}
+
+.search-button svg {
+    object-fit: cover;
+}
+
+.main-header {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    margin-bottom: 2px;
+
+}
+
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -10;
+    
+    
+}
+
+
+video .main-header{
+    object-fit: cover;
+    
+}
+
+
+
+.images-size{
+    width: 50%;
+    
+  }
+
+body {
+    background-color: rgb(51, 51, 51);
+}
+
+
+.box {
+    
+    display: flex;
+    flex-direction: row;
+    display: inline-block;
+    align-items: flex-start;
+    align-content:flex-start;
+}
+
+.display-image {
+    height: 300px;
+    padding-bottom: 3px;
+    
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+      
+.starttoday {
+    background-color: rgb(80, 212, 109);
+    outline: none;
+    border: none;
+    border-radius: 20px 20px 0px 20px;
+    border: 5px solid rgb(80, 212, 109);
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 40px;
+}
+
+.starttoday:hover {
+    background-color: rgb(154, 241, 173);
+    outline: none;
+    border: none;
+    border-radius: 20px 20px 0px 20px;
+    border: 5px solid rgb(154, 241, 173);
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+
+.pricing {
+    font-size: 25px;
+    color: rgb(154, 241, 173);
+   
+    
+}
+
+.price_link {
+    text-decoration: none;
+}
+
+.text-here {
+    color: white;
+}
+
+
+.white-text{
+    color: white;
+}
+
+.trending-text {
+    color: white;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    width: 400px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -200px;
+    text-align: center;
+    padding-top: 40px;
+    visibility: hidden; 
+    display: none;
+    
+}
+
+
+.overlay:hover {
+    background-color: black;
+    z-index: 10;
+    
+}
+
+.image-home .overlay .display-image {
+    position: cover;
+}
+
+.detail-img {
+    width: 500px;
+}
+
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  
+  
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+  
+  /* Modal Content (Image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+  }
+  
+  /* Caption of Modal Image (Image Text) - Same Width as the Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+  
+  /* Add Animation - Zoom in the Modal */
+  .modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
+  
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+
+  
+  
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
+    }
+  }
+
+
+  .asdasda {
+      color: white;
+      text-decoration: none;
+  }
+
+
+
+
+
+.detailcoloum {
+    text-align: left;
+
+}
+
+
+.kasdjasdhkh {
+    max-width: 100px;
+}
+
+.table-pro {
+    text-align: center;
+}
+
+
+.aaad {
+    color: red;
+}
+
+.greenapprove {
+    color: rgb(79, 224, 79);
+}
+
+.redapprove {
+    color: red;
+
+}
+
+
+
+.inlineadskhdbas {
+    display: block;
+}
