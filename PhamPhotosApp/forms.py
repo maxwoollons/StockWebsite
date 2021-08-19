@@ -9,11 +9,11 @@ from PIL import Image
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
-    
+    confirm = forms.BooleanField(required=True, label="I accept the terms and conditions")
     class Meta:
         model = User
-        fields = ['username','email','first_name','last_name','password1','password2']
-        
+        fields = ['username','email','first_name','last_name','password1','password2','confirm']
+       
         
         
         
