@@ -169,7 +169,7 @@ def purchase(request, pk):
             paied = cost-commission
             new = tokens - cost
             user.update(tokens=new)
-            p = videopurchases(User=request.user.users,Photo_id=pk,downloaded=False,paied=paied)
+            p = purchases(User=request.user.users,Photo_id=pk,downloaded=False,paied=paied)
             p.save()
             
             ouser.update(tokens=onew)
