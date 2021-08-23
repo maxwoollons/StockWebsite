@@ -11,9 +11,10 @@ from .validators import file_size
 from PIL import *
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
-
+from .processors import Watermark
 from django.contrib.auth.models import User
 User._meta.get_field('email')._unique = True
+
 
 
 
@@ -74,7 +75,7 @@ class photos(models.Model): #PHOTO
     cameratype = models.CharField(max_length=255, null=True, blank=True)
     approved = models.BooleanField(default=False)
     image_thumbnail = ImageSpecField(source="photo",processors=[ResizeToFill(800,800)],format="JPEG",options={'quality':60})
-    large_image_thumbnail = ImageSpecField(source="photo",format="JPEG",options={'quality':60})
+    large_image_thumbnail = ImageSpecField(source="photo",format="JPEG",options={'quality':60}, processors=[Watermark()])
     def __str__(self):
         return str(self.id) + ' Approved:' + str(self.approved)
 
