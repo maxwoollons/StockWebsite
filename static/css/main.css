@@ -353,3 +353,12 @@ html, body {
     height: 250px;
     width: 400px;
 }
+
+@media screen and (m-width: 500px){
+
+
+.credits-navbar {
+display: none;
+
+    }
+}

@@ -64,7 +64,10 @@
      <div class="p-5 mb-4 bg-dark rounded-3 mt-3">
       <div class="container-fluid py-5">
       {% for a in profile %}
-      <h2>You have {{ a.users.tokens }} credits</h2>
+      <h2> Credits {{ a.users.tokens }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+        <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+      </svg></h2>
        <h1><strong>Want Credits?</strong></h1>
        {% endfor %}
        <h6>Purchasing an image gives you a permanent license for the rights of using videos for commercial use.</h6>
@@ -123,6 +126,7 @@
                 alt="{{ b.title }}"/></a>
           </th>
           <th>
+            {% if b.approved == False %}
             <a href="./del/{{ b.id }}" onclick="return confirm('You are about to delete your photo, are you sure?')"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -140,6 +144,9 @@
                   d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
                 /></svg
             ></a>
+            {% else %}
+            <h3>N/A</h3>
+            {% endif %}
           </th>
         </tr>
 
@@ -195,6 +202,7 @@
               </a>
           </th>
           <th>
+            {% if west.approved == False %}
             <a href="/profile/del/v/{{ west.id }}" onclick="return confirm('You are about to delete your photo, are you sure?')"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -212,6 +220,9 @@
                   d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
                 /></svg
             ></a>
+            {% else %}
+              <h3>N/A</h3>
+            {% endif %}
           </th>
         </tr>
 

@@ -123,6 +123,15 @@ class PhotoDetail(DetailView):
     context_object_name='obj'
     template_name="detailview.html"
     model = photos
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        pic_owner = photos.objects.values_list('owner_id', flat=True).get(id=self.kwargs['pk'])
+        context['others'] = photos.objects.all().order_by('?')[:20]
+        context['owner'] = photos.objects.all().filter(owner_id=pic_owner).order_by('?')[:10]
+        return context
+
     
     
 def search(request):
@@ -246,6 +255,12 @@ class VideoDetail(DetailView):
     context_object_name='obj'
     template_name="videodetail.html"
     model = videos
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['others'] = videos.objects.all().order_by('?')[:20]
+        return context
 
 @login_required
 def vidpurchase(request,pk):

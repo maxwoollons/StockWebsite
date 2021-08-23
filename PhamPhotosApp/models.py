@@ -8,12 +8,15 @@ from django.db.models.fields.related import ForeignKey, ManyToManyField
 
 
 from .validators import file_size
-
+from PIL import *
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
 
 from django.contrib.auth.models import User
 User._meta.get_field('email')._unique = True
+
+
+
 
 CHOICES = (
             ('Animals and Wild Life', 'Animals and Wild Life'),  
