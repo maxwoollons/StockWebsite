@@ -50,9 +50,11 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             emailw = request.POST["email"]
-            username = request.POST["username"]
-            form.is_active = False
+            username = request.POST["username"]         
             form.save()
+            user = User.objects.get(username=username)
+            user.is_active = False
+            user.save()
             user = User.objects.get(username=username)
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             domain = get_current_site(request).domain
