@@ -74,7 +74,7 @@ def register(request):
                 OK = users(user=a,tokens=0)
                 OK.save()
                 messages.success(request, f'account created for {username}!')
-                return redirect('home')
+                return redirect('aa')
     else:
         form = UserRegistrationForm()
         
@@ -190,8 +190,8 @@ def purchase(request, pk):
     user = users.objects.all().filter(user_id=request.user.id)
     pic_owner = photos.objects.values_list('owner_id', flat=True).get(id=pk)
     cost = photos.objects.values_list('price', flat=True).get(id=pk)
-    ouser = users.objects.all().filter(user_id=pic_owner) #
-    owneruser = User.objects.get(id=pic_owner) #
+    ouser = users.objects.all().filter(user_id=pic_owner) #owner user tokens 
+    owneruser = User.objects.get(id=pic_owner) #picture user owner object
     title = photos.objects.values_list('title', flat=True).get(id=pk)
     otokens = users.objects.values_list('tokens', flat=True).get(user=pic_owner)
     
@@ -457,3 +457,7 @@ def dsv(request,pk):
         return redirect('saved')
     else:
         return redirect('saved')
+
+
+def aa(request):
+    return render(request, 'PhamPhotosApp/CheckYourEmail.html')

@@ -44,7 +44,7 @@ urlpatterns = [
         "favicon.ico",
         RedirectView.as_view(url=staticfiles_storage.url("/ico/aaa.ico")),
     ),
-    
+    path('activateaccount/', views.aa, name='aa'),
     
     
     
