@@ -141,11 +141,11 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = '/login'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mck78298@gmail.com'
+EMAIL_HOST_USER = 'helpultimateimagination@gmail.com'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'noreply@ultimateimagination.com.au'
 EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = 'MaxWoollons2004'
+EMAIL_HOST_PASSWORD = 'Phamphotos123'
 
 
 
