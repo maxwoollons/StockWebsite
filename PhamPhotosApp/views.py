@@ -86,7 +86,11 @@ def register(request):
 
 class VerificationView(View):
     def get(self,request,uidb64,token):
-        return redirect('home')
+        id = urlsafe_base64_decode(force_str(uidb64)).decode('UTF-8')
+        a = users.objects.get(id=id)
+        a.is_active = True
+        a.save()
+        return redirect('login')
     
 
 
