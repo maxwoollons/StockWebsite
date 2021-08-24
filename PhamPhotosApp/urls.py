@@ -2,6 +2,10 @@ from re import template
 from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.urls import include, path
+from django.views.generic.base import RedirectView
+from django.conf import settings
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -35,7 +39,11 @@ urlpatterns = [
     path('savevid/<int:pk>', views.vsave, name='vsave'),
     path('dsp/<int:pk>', views.dsp, name='dsp'),
     path('dsv/<int:pk>', views.dsv, name='dsv'),
-    path('activate/<uidb64>/<token>',views.VerificationView.as_view(), name="activate")
+    path('activate/<uidb64>/<token>',views.VerificationView.as_view(), name="activate"),
+    path(
+        "favicon.ico",
+        RedirectView.as_view(url=staticfiles_storage.url("/ico/aaa.ico")),
+    ),
     
     
     
