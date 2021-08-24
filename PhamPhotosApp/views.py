@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.forms.widgets import Media
 from django.http import request
 from django.shortcuts import redirect, render
+from django.views.generic.base import View
 from .forms import UserRegistrationForm, MediaSubmit, VideoSubmit, ExchangeSubmit
 from django.contrib import messages
 from .models import photos, purchases, users, payments, creditpurchases, videos, videopurchases, exchange, savedphoto, savedvideo
@@ -10,6 +11,13 @@ from django.views.generic import DetailView
 from PIL import Image
 import PIL
 import json
+from django.core.mail import send_mail, EmailMessage
+
+from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.contrib.sites.shortcuts import get_current_site
+from .utils import token_generator
+from django.urls import reverse
 
 
 def login_excluded(redirect_to):
@@ -41,7 +49,25 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
+            emailw = request.POST["email"]
+            username = request.POST["username"]
+            form.is_active = False
             form.save()
+            user = User.objects.get(username=username)
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+            domain = get_current_site(request).domain
+            link = reverse('activate',kwargs={'uidb64':uidb64,'token':token_generator.make_token(user)})
+            url = 'http://' + domain + link
+            email_subject = "Activate Your Account"
+            email_body = "Click this link to verify your ultimate imagination account. \n " + url
+            email = EmailMessage(
+            email_subject,
+            email_body,
+            'noreply@ultimateimagination.com.au',
+            [emailw], #recipient 
+            )
+        
+            email.send(fail_silently=False)
             username = form.cleaned_data.get('username')
             user = User.objects.filter(username=username)
             for a in user:
@@ -53,6 +79,13 @@ def register(request):
         form = UserRegistrationForm()
         
     return render(request, 'PhamPhotosApp/register.html', {'form':form})
+
+
+
+class VerificationView(View):
+    def get(self,request,uidb64,token):
+        return redirect('home')
+    
 
 
 @login_required

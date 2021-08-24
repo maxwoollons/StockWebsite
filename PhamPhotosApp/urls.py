@@ -35,6 +35,7 @@ urlpatterns = [
     path('savevid/<int:pk>', views.vsave, name='vsave'),
     path('dsp/<int:pk>', views.dsp, name='dsp'),
     path('dsv/<int:pk>', views.dsv, name='dsv'),
+    path('activate/<uidb64>/<token>',views.VerificationView.as_view(), name="activate")
     
     
     
