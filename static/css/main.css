@@ -217,6 +217,19 @@ html, body {
     
 }
 
+
+@media only screen and (max-width: 600px) {
+    .box {
+      width: 99vw;
+      max-height: auto;
+    }
+    .display-image {
+        width: 99vw;
+        max-height: auto;
+        
+    }
+  }
+
 .image-home .overlay .display-image {
     position: cover;
 }
