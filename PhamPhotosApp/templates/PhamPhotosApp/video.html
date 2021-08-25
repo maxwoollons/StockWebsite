@@ -32,18 +32,18 @@
         {% for a in vids %}
         
         <div class="box">
-          <a href="/video/{{a.id}}">          
+          <a id="aaa" href="/video/{{a.id}}">          
            
             <video
-    id="my-video"
-    class="video-js"
+            
+    id="video"
+    class="videoo"
     preload="auto"
     width="400"
     height="224"
-    poster=""
-    data-setup="{}"
+
     muted=true
-    autoplay=true
+    
     loop
   >
     <source src="{{ a.video.url }}" type="video/mp4" />
@@ -103,7 +103,22 @@
 
 <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
 
+<script>
 
+var vid = document.getElementsByClassName("videoo");
+[].forEach.call(vid, function (item) {
+item.addEventListener('mouseover', hoverVideo, false);
+item.addEventListener('mouseout', hideVideo, false); });
+
+function hoverVideo(e){
+this.play();
+}
+function hideVideo(e){
+this.currentTime = 0;
+this.pause();
+}
+
+</script>
 
 
 
