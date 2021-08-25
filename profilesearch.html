@@ -1,0 +1,114 @@
+{% extends "PhamPhotosApp/base.html" %} {% block content %}
+
+
+
+<style>
+
+
+
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 flexy">
+      <h1 class="text-white">{{userr.username}}'s stock photos</h1>
+      <h3 class="text-white">{{ amt }} results</h3>
+      {% if pic %}
+      <br>
+      <h3 class='text-white'>Photos</h3>
+        {% for a in pic %}
+        <div class="box">
+          <a class="image-home" href='../../{{ a.id }}'>
+            
+            <img class="display-image" src='{{ a.image_thumbnail.url }}'/>
+            
+          
+        
+
+          </a>
+        </div>
+        
+        {% endfor %}
+
+        {% else %}
+        <center>
+        <h1 class="p-5" style="color: white;">User has no photos!</h1>
+        
+      </center>
+
+        {% endif %}
+
+        {% if vid %}
+        <br>
+        <h3 class='text-white'>Videos</h3>
+        {% for b in vid %}
+        
+        <div class="box">
+          <a class="image-home" href='/video/{{ b.id }}'>
+            
+            <video
+           
+            class="videoo"
+            preload="auto"
+            width="400"
+            height="224"
+            poster=""
+           
+            muted=true
+           
+            loop
+          >
+            <source src="{{ b.video.url }}" type="video/mp4" />
+          
+            
+          </video>  
+            
+          
+        
+
+          </a>
+        </div>
+        
+        {% endfor %}
+
+        {% else %}
+        <center>
+        <h1 class="p-5" style="color: white;">User has no videos!</h1>
+        
+      </center>
+
+        {% endif %}
+
+        
+       
+
+
+      </div>
+  </div>
+  <br>
+ <a href="/"><button class="btn btn-primary">Return</button></a>
+</div>
+</div>
+
+
+
+
+<script>
+
+var vid = document.getElementsByClassName("videoo");
+[].forEach.call(vid, function (item) {
+item.addEventListener('mouseover', hoverVideo, false);
+item.addEventListener('mouseout', hideVideo, false); });
+
+function hoverVideo(e){
+this.play();
+}
+function hideVideo(e){
+this.currentTime = 0;
+this.pause();
+}
+</script>
+
+
+
+
+{% endblock content %}
