@@ -141,14 +141,13 @@
           <a href="/video/{{a.id}}">          
            
             <video
-    id="my-video"
-    class="video-js"
+   
+    class="videoo"
     preload="auto"
     style="max-width: 400px; max-height: 290px;"
-    poster=""
-    data-setup="{}"
+  
     muted=true
-    autoplay=true
+    
     loop
   >
     <source src="{{ a.video.url }}" type="video/mp4" />
@@ -214,7 +213,21 @@
   }
 </script>
 
+<script>
+  
+var vid = document.getElementsByClassName("videoo");
+[].forEach.call(vid, function (item) {
+item.addEventListener('mouseover', hoverVideo, false);
+item.addEventListener('mouseout', hideVideo, false); });
 
+function hoverVideo(e){
+this.play();
+}
+function hideVideo(e){
+this.currentTime = 0;
+this.pause();
+}
+</script>
 
 
 
