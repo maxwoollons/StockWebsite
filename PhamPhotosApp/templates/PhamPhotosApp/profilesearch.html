@@ -46,15 +46,13 @@
           <a class="image-home" href='/video/{{ b.id }}'>
             
             <video
-            id="my-video"
-            class="video-js"
-            preload="auto"
+            class="videoo"
+            
             width="400"
             height="224"
-            poster=""
-            data-setup="{}"
+           
             muted=true
-            autoplay=true
+         
             loop
           >
             <source src="{{ b.video.url }}" type="video/mp4" />
@@ -89,7 +87,22 @@
 </div>
 </div>
 
+<script>
 
+var vid = document.getElementsByClassName("videoo");
+[].forEach.call(vid, function (item) {
+item.addEventListener('mouseover', hoverVideo, false);
+item.addEventListener('mouseout', hideVideo, false); });
+
+function hoverVideo(e){
+this.play();
+}
+function hideVideo(e){
+this.currentTime = 0;
+this.pause();
+}
+
+</script>
 
 
 
