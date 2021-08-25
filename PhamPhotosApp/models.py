@@ -74,7 +74,7 @@ class photos(models.Model): #PHOTO
     category = models.CharField(max_length=255, choices=CHOICES)
     cameratype = models.CharField(max_length=255, null=True, blank=True)
     approved = models.BooleanField(default=False)
-    image_thumbnail = ImageSpecField(source="photo",processors=[ResizeToFill(800,800)],format="JPEG",options={'quality':60})
+    image_thumbnail = ImageSpecField(source="photo",processors=[ResizeToFill(800,800)],format="JPEG",options={'quality':30})
     large_image_thumbnail = ImageSpecField(source="photo",format="JPEG",options={'quality':60}, processors=[Watermark()])
     def __str__(self):
         return str(self.id) + ' Approved:' + str(self.approved)
