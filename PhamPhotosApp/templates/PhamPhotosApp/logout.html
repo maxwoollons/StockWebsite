@@ -9,6 +9,7 @@
 {% extends "PhamPhotosApp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load static %}
 <div class="container">
 <div class="wrapper fadeInDown">
   <div id="formContent">
@@ -16,7 +17,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first iconn">
-      <img class="icon-img" src="https://i.imgur.com/TixRqpj.gif" id="icon" alt="User Icon" style="max-width: 150px;" />
+      <img class="icon-img" src="{% static 'images/ui.png' %}" id="icon" alt="User Icon" style="max-width: 150px;" />
     </div>
     <center>
     <h1 class="white-text mt-5">You have been logged out!</h1>

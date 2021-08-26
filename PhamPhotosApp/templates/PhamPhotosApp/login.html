@@ -8,6 +8,7 @@
 {% extends "PhamPhotosApp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load static %}
 
 <div class="container white-text">
 <div class="wrapper fadeInDown">
@@ -16,13 +17,13 @@
 
     <!-- Icon -->
     <div class="fadeIn first iconn">
-      <img class="icon-img" src="https://i.imgur.com/TixRqpj.gif" id="icon" alt="User Icon" style="max-width: 150px;" />
+      <img class="icon-img" src="{% static 'images/ui.png' %}" id="icon" alt="User Icon" style="max-width: 150px;" />
     </div>
 
-    <!-- register Form -->
+ 
     <form class="register mt-3" method="POST">
       
-      <!-- Token -->
+ 
       {% csrf_token %}
       {{ form|crispy }}
       <button class="btn btn-outline-info" type="submit">Login</button>

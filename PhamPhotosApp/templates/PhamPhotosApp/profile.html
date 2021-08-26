@@ -184,15 +184,14 @@
             <a href="/video/{{ west.id }}"
               >
                           <video
-    id="my-video"
-    class="video-js"
+    
+    class="videoo"
     preload="auto"
     width="200"
     height="140"
-    poster=""
-    data-setup="{}"
+   
     muted=true
-    autoplay=true
+
     loop
   >
     <source src="{{ west.video.url }}" type="video/mp4" />
@@ -479,6 +478,23 @@ function openCity(evt, cityName) {
 document.getElementById("defaultOpen").click();
 </script>
 
+<script>
+
+  var vid = document.getElementsByClassName("videoo");
+  [].forEach.call(vid, function (item) {
+  item.addEventListener('mouseover', hoverVideo, false);
+  item.addEventListener('mouseout', hideVideo, false); });
+  
+  function hoverVideo(e){
+  this.play();
+  }
+  function hideVideo(e){
+  this.currentTime = 0;
+  this.pause();
+  }
+  
+  </script>
+  
 
   {% endblock content %}
 

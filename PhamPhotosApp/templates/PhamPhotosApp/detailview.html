@@ -17,7 +17,7 @@
       
       <div class="row pt-3">
       <div class="col-md-12 text-dark">
-        <h4 class="m-3"><u><strong>{{ obj.title }}</strong></u></h4>
+        <h1 class="m-3"><strong>{{ obj.title }}</strong></h1>
         
         <center>
         <img id="myImg" src="{{ obj.large_image_thumbnail.url }}" alt="{{ obj.title }}" style="max-width: 90%; max-height: 800px;">
@@ -42,7 +42,7 @@
         <br>
         
         {% if user.is_authenticated %}
-        <a href="/savephoto/{{obj.id}}"><button class="btn btn-primary m-1" style="width: 150px;">Bookmark</button></a>
+        <a href="/savephoto/{{obj.id}}"><button class="btn btn-dark m-1" style="width: 150px;">Bookmark</button></a>
         {%else%}
         {% endif %}
         
@@ -56,9 +56,9 @@
 
        
         
-        <a class="asdasda" onclick="return confirm('You are about to purchase {{ obj.title }}, Are you sure?')" href='purchase/{{ obj.id }}'><button style="width: 150px;" class="btn btn-primary m-1">Purchase</button></a><br>
+        <a class="asdasda" onclick="return confirm('You are about to purchase {{ obj.title }}, Are you sure?')" href='purchase/{{ obj.id }}'><button style="width: 150px;" class="btn btn-dark m-1">Purchase</button></a><br>
         
-        <a class="asdasda" href='/'><button style="width: 150px;" class="btn btn-danger m-1">Home</button></a>
+        <a class="asdasda" href='/'><button style="width: 150px;" class="btn btn-dark m-1">Home</button></a>
      
       <h4 class="p-4"><strong>By</strong> <a href="/user/profile/{{obj.owner.id}}">{{ obj.owner.username }}</a> </h4>
 
