@@ -18,6 +18,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from .utils import token_generator
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 
 def login_excluded(redirect_to):
@@ -32,8 +33,17 @@ def login_excluded(redirect_to):
 
 
 def home(request):
-    Media = photos.objects.all().filter(approved=True).order_by('?')[:30]
-    return render(request, 'PhamPhotosApp/home.html', {'photos':Media})
+    Media = photos.objects.all().filter(approved=True).order_by('?')
+
+    media_paginator = Paginator(Media, 25)
+
+    page_num = request.GET.get('page')
+
+    page = media_paginator.get_page(page_num)
+
+
+
+    return render(request, 'PhamPhotosApp/home.html', {'photos':Media,'page':page})
 
 
 def login(request):
