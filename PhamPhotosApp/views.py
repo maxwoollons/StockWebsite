@@ -296,7 +296,7 @@ def paymentcomplete(request):
 def video(request):
     vids = videos.objects.all().filter(approved=True).order_by('-added')
     
-    media_paginator = Paginator(vids, 3)
+    media_paginator = Paginator(vids, 1)
 
     page_num = request.GET.get('page')
 
