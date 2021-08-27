@@ -33,7 +33,7 @@ def login_excluded(redirect_to):
 
 
 def home(request):
-    Media = photos.objects.all().filter(approved=True).order_by('?')
+    Media = photos.objects.all().filter(approved=True).order_by('-added')
 
     media_paginator = Paginator(Media, 25)
 
@@ -294,8 +294,16 @@ def paymentcomplete(request):
     return redirect('home')
         
 def video(request):
-    vids = videos.objects.all().filter(approved=True).order_by('?')#here
-    return render(request, 'PhamPhotosApp/video.html',{'vids':vids})
+    vids = videos.objects.all().filter(approved=True).order_by('-added')
+    
+    media_paginator = Paginator(vids, 3)
+
+    page_num = request.GET.get('page')
+
+    page = media_paginator.get_page(page_num)
+    
+    
+    return render(request, 'PhamPhotosApp/video.html',{'vids':vids,'page':page})
 
 
 

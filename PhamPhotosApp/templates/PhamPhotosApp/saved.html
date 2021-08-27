@@ -8,6 +8,7 @@
 {% extends "PhamPhotosApp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load static %}
 <div class="container">
 <div class="wrapper fadeInDown">
   <div id="formContent">
@@ -20,7 +21,7 @@
     <!-- Remind Passowrd -->
   
   <div class="px-4 py-5 my-5 text-center bg-white rounded-3">
-    <img class="d-block mx-auto mb-4" src="https://i.imgur.com/TixRqpj.gif" alt="" width="100" height="100">
+    <img class="d-block mx-auto mb-4" src="{% static 'images/ui.png' %}" alt="" width="100" height="100">
     <h1 class="display-5 fw-bold">Bookmarked Media</h1><br>
     <div class="col-lg-12 mx-auto">
      

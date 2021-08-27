@@ -29,7 +29,7 @@
     <div class="col-xl-10 flexy">
    
       
-        {% for a in vids %}
+        {% for a in page.object_list %}
         
         <div class="box">
           <a id="aaa" href="/video/{{a.id}}">          
@@ -46,8 +46,7 @@
     loop
   >
     <source src="{{ a.video.url }}" type="video/mp4" />
-  
-    
+
   </video>
       
           
@@ -59,6 +58,9 @@
       
         
         {% endfor %}
+        <h1 class=text-white>Page {{ page.number }}</h1>
+        {% if page.has_previous %}<a href="/video{% url 'home' %}?page={{ page.previous_page_number }}"><button class="btn btn-outline-info m-1">Previous page</button></a>{% endif %}
+        {% if page.has_next %}<a href="/video{% url 'home' %}?page={{ page.next_page_number }}"><button class="btn btn-outline-info m-1">Next page</button></a>{% endif %}
       </div>
       
     <div class="col-xl-2 sidebarhome">

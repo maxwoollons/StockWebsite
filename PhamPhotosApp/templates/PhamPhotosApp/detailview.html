@@ -17,10 +17,10 @@
       
       <div class="row pt-3">
       <div class="col-md-12 text-dark">
-        <h1 class="m-3"><strong>{{ obj.title }}</strong></h1>
+        
         
         <center>
-        <img id="myImg" src="{{ obj.large_image_thumbnail.url }}" alt="{{ obj.title }}" style="max-width: 90%; max-height: 800px;">
+        <img id="myImg" src="{{ obj.large_image_thumbnail.url }}" alt="{{ obj.title }}" style="max-width: 90%; max-height: 800px; padding-top: 25spx;">
         
       </center>
       </div>
@@ -29,7 +29,7 @@
         <div class="col-6 text-dark">
       
       <div class="p-3" style="display: inline;">
-      <h1 class="pt-3"><strong>{{ obj.title }}</strong></h1>
+      
         <h2>Image Details</h2>
         {% if obj.cameratype %}
         <h4><strong>Cameratype:</strong> {{ obj.cameratype }}</h4>
