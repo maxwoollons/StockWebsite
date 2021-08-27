@@ -45,7 +45,7 @@
     
     loop
   >
-    <source src="{{ a.video.url }}" type="video/mp4" />
+    <data-src src="{{ a.video.url }}" type="video/mp4"></data-src>
 
   </video>
       
@@ -121,6 +121,13 @@ this.pause();
 
 </script>
 
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazy/1.7.5/jquery.lazy.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazy/1.7.5/plugins/jquery.lazy.av.min.js"></script>
+<script type="text/javascript">
+  jQuery(function($) {
+      $("video").lazy();
+  });
+  </script>
 
 
 

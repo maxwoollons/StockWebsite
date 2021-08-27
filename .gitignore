@@ -1,2 +1,3 @@
 db.mysqlite3
 media/CACHE
+*.pyc
