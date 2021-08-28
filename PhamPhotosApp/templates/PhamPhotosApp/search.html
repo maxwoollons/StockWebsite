@@ -1,4 +1,5 @@
 {% extends "PhamPhotosApp/base.html" %} {% block content %}
+{% load static %}
 
 
 
@@ -10,9 +11,7 @@
 <div class="main-header p-5">
   <div class="container-fluid py-5 niii">
     <h1 class="display-5 fw-bold text-here">Explore Stock Footage</h1>
-    <video class="video" autoplay muted loop>
-      <source src="..\media\images\banner.mp4" type="video/mp4">
-    </video>
+    <img class="video" src="{% static 'images/banner.gif' %}" alt="">
     <center>
       <form method="GET" class="text-align-center form-top" action="{% url 'search' %}"><input name="search"
           placeholder="Search for Footage" class="bar"><button class="search-button" type="submit"><svg
