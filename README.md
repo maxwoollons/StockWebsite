@@ -10,3 +10,6 @@ Purchasing stock images
 Credits
 Credit exchange
 
+
+<h3>We are getting there i hate dealing with video elements</h3>
+
