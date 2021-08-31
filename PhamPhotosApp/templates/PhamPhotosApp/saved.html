@@ -34,7 +34,7 @@
   </div>
   <center>
     <div class="row text-center">
-      <div class="col-6 bg-white rounded-start">
+      <div class="col-12 bg-white rounded">
         <h1>Photos</h1>
         {% if photo %}
           <table>
@@ -58,49 +58,6 @@
         {% endfor %}
       </table>
       
-        {% else %}
-        <h3>Nothing saved</h3>
-        {% endif %}
-      </div>
-      <div class="col-6 rounded-end bg-white">
-        <h1>Videos</h1>
-        {% if video %}
-          <table>
-            <tr>
-
-              <th></th>
-              <th></th>
-            </tr>
-        {% for b in video %}
-        
-              <tr>
-                <th>
-        <div class="box">
-        
-       <a href="/video/{{b.image.id}}">   <video
-        id="my-video"
-        class="video-js"
-        preload="auto"
-        width="400"
-        height="224"
-        poster=""
-        data-setup="{}"
-        muted=true
-        autoplay=true
-        loop
-      >
-        <source src="{{ b.image.video.url }}" type="video/mp4"/>
-      
-        
-      </video></a>
-
-      </div>
-    </th>
-    <th><a href="/dsv/{{b.id}}"><button class="btn btn-danger m-5">Delete</button></a></th>
-    </tr>
-          
-        {% endfor %}
-      </table>
         {% else %}
         <h3>Nothing saved</h3>
         {% endif %}

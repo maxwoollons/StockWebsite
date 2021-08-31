@@ -39,43 +39,7 @@
 
         {% if vid %}
         <br>
-        <h3 class='text-white'>Videos</h3>
-        {% for b in vid %}
-        
-        <div class="box">
-          <a class="image-home" href='/video/{{ b.id }}'>
-            
-            <video
-            class="videoo"
-            
-            width="400"
-            height="224"
-           
-            muted=true
-         
-            loop
-          >
-            <source src="{{ b.video.url }}" type="video/mp4" />
-          
-            
-          </video>  
-            
-          
-        
-
-          </a>
-        </div>
-        
-        {% endfor %}
-
-        {% else %}
-        <center>
-        <h1 class="p-5" style="color: white;">User has no videos!</h1>
-        
-      </center>
-
-        {% endif %}
-
+      
         
        
 
