@@ -1,0 +1,375 @@
+{% extends "PhamPhotosApp/base.html" %} {% block content %}
+
+<style>
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  
+  border-top: none;
+}
+
+
+</style>
+
+<div class="container">
+  <div class="row text-here">
+    <div class="col-md-7">
+      <div class="p-5 mb-4 bg-dark rounded-3 mt-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">User Profile</h1>
+        
+      {% for a in profile %}
+      <h3>ID: {{ a.id }}</h3>
+      <h3>Email: {{ a.email }}</h3>
+      <h3>Username: {{ a.username }}</h3>
+      {% endfor %}
+      <br /></p>
+        <a href="/submit"><button class="btn btn-primary btn-lg" type="button">Upload Media</button></a><a href="/saved"><button class="btn btn-primary btn-lg m-1" type="button">Bookmarked <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+          <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+        </svg></button></a>
+        <!-- Confirm account button here -->
+      </div>
+    </div>
+      
+    </div>
+    <div class="col-md-5">
+     <div class="p-5 mb-4 bg-dark rounded-3 mt-3">
+      <div class="container-fluid py-5">
+      {% for a in profile %}
+      <h2> Credits {{ a.users.tokens }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+        <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+      </svg></h2>
+       <h1><strong>Want Credits?</strong></h1>
+       {% endfor %}
+       <h6>Purchasing an image gives you a permanent license for the rights of using videos for commercial use.</h6>
+
+       <a href="/credits"><button type="button" class="btn btn-outline-primary m-3">Purchase Credits</button></a>    
+      
+       
+      </div>
+    </div>
+    
+    
+    
+    </div>
+  </div>
+ 
+
+
+  <div class="row mb-5 bg-white rounded-3 p-3">
+    <div class="col-md-12 bg-white rounded-3" >
+         <!-- TESTING -->
+  <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'upload')" id="defaultOpen">My Uploads</button>
+  <button class="tablinks" onclick="openCity(event, 'purchase')">Purchases</button>
+  <button class="tablinks" onclick="openCity(event, 'income')">Income</button>
+  <button class="tablinks" onclick="openCity(event, 'credit')">Credit</button>
+</div>
+<div id="upload" class="tabcontent">
+     <h1 class=" ">My Photo Uploads</h1>
+      {% if uploads %}
+      <table class="table table-sm table-bordered" style="width: 100%;">
+        <tr>
+        <th>ID</th>
+          <th>Title</th>
+          <th>Approved Status</th>
+          <th>Date Added</th>
+          <th></th>
+          <th>Delete</th>
+        </tr>
+
+        {% for b in uploads %}
+        <tr>
+        <th>{{ b.id }}</th>
+          <th>{{ b.title }}</th>
+          {% if b.approved == True %}
+          <th style="color: rgb(79, 224, 79)">{{ b.approved }}</th>
+          {% else %}
+          <th style="color: red">{{ b.approved }}</th>
+          {% endif %}
+          <th>{{ b.added }}</th>
+          <th>
+            <a href="../{{ b.id }}"
+              ><img
+                class="kasdjasdhkh"
+                src="{{ b.image_thumbnail.url }}"
+                alt="{{ b.title }}"/></a>
+          </th>
+          <th>
+            {% if b.approved == False %}
+            <a href="./del/{{ b.id }}" onclick="return confirm('You are about to delete your photo, are you sure?')"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-trash aaad"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                /></svg></a>
+            {% else %}
+            <h3>N/A</h3>
+            {% endif %}
+          </th>
+        </tr>
+
+        {% endfor %}
+      </table>
+      {% else %}
+      <h3 class="">You have not uploaded any images</h3>
+      {% endif %}
+
+      </div>
+      <div id="credit" class="tabcontent">
+      
+       
+        <h1 class="">Credit Payments</h1>
+        {% if creditss %}
+
+        
+
+        <table
+          class="table table-sm table-bordered"
+          style="width: 100%;"
+        >
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Credit Amount</th>
+           <th>Amount Paied</th>
+           <th>Date</th>
+          
+        </tr>
+          {% for cred in creditss %}
+          <tr>
+            <th>{{cred.id}}</th>
+            <th>{{cred.user}}</th>
+            <th>${{cred.cost}} AUD</th>
+            <th>+ {{cred.creditamount}} Credits</th>
+             <th>{{cred.added}}</th>
+            
+          </tr>
+
+          {% endfor %}
+        </table>
+
+        {% else %}
+          <div>
+        <h3>You have not purchased any credits through our store</h3>
+          </div>
+        {% endif %}
+</div>
+
+
+
+
+
+
+<div id="income" class="tabcontent">
+   <h1>Payment Log/Income</h1>
+        
+
+        {% if items %}
+
+        
+
+        <table
+          class="table table-sm table-bordered"
+          style="width: 100%;"
+        >
+        <tr>
+          <th>Payment</th>
+          <th>Product</th>
+          <th>Amount</th>
+          <th>Added</th>
+        </tr>
+          {% for nut in items %}
+          <tr>
+            <th>{{nut.id}}</th>
+            <th>{{nut.title}}</th>
+
+            <th>{{nut.amount}}</th>
+            <th>{{nut.added}}</th>
+          </tr>
+
+          {% endfor %}
+        </table>
+
+        {% else %}
+
+        <h3>No once has purchased has your products</h3>
+          
+
+        {% endif %}
+        
+</div>
+
+
+
+<div id="purchase" class="tabcontent">
+   <h1 class="">Photo Purchases</h1>
+      <table
+        class="table table-sm table-bordered"
+        style="width: 100%;"
+      >
+        {% if pur %}
+        <tr>
+          <th>Transaction ID</th>
+          <th>Purchase Date</th>
+          <th>Title</th>
+          <th></th>
+          <th>Download</th>
+        </tr>
+        {% for c in pur %}
+        <tr>
+          <th>{{c.id}}</th>
+          <th>{{c.date}}</th>
+          <th>{{ c.Photo.title }}</th>
+          <th>
+            <a href="../{{ c.Photo.id }}"
+              ><img
+                class="kasdjasdhkh"
+                src="../media/{{ c.Photo.image_thumbnail }}"
+                alt="{{ c.title }}"
+            /></a>
+          </th>
+          <th>
+            <a href="../media/{{ c.Photo.photo }}" download
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-download"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg></a>
+          </th>
+        </tr>
+
+        {% endfor %}
+      </table>
+      {% else %}
+
+      <h3 class="">No Purchases</h3>
+        
+
+  {% endif %}
+   
+
+
+</div>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+       
+       
+   
+
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+<script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+
+
+
+  
+document.getElementById("defaultOpen").click();
+</script>
+
+<script>
+
+  var vid = document.getElementsByClassName("videoo");
+  [].forEach.call(vid, function (item) {
+  item.addEventListener('mouseover', hoverVideo, false);
+  item.addEventListener('mouseout', hideVideo, false); });
+  
+  function hoverVideo(e){
+  this.play();
+  }
+  function hideVideo(e){
+  this.currentTime = 0;
+  this.pause();
+  }
+  
+  </script>
+  
+
+  {% endblock content %}
+

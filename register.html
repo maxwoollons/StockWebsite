@@ -1,0 +1,47 @@
+
+ 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="main-reg">
+
+
+{% extends "PhamPhotosApp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<div class="container white-text">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first iconn">
+      <img class="icon-img" src="{% static 'images/ui.png' %}" id="icon" alt="User Icon" style="max-width: 150px;"/>
+    </div>
+
+    <!-- register Form -->
+    <form class="register white-text" method="POST">
+      
+      <!-- Token -->
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button class="btn btn-outline-info" type="submit">Register</button>
+    
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <span>Have An Account? </span><a class="underlineHover" href="/login">Login</a><br>
+      <small> <a href='https://docs.google.com/document/d/15uYh3FgVJsKO4jQnKiwNkeYm07xdWwmvR-15ZOj3GCc/edit?usp=sharing' target="blank_">terms and conditions</a></small>
+    </div>
+
+  </div>
+</div>
+<br>
+
+</div>
+</div>
+{% endblock content %}

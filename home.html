@@ -1,0 +1,107 @@
+{% extends "PhamPhotosApp/base.html" %} {% block content %}
+{% load static %}
+
+
+
+<style>
+
+
+
+</style>
+
+
+
+<div class="main-header p-5" style="z-index: 10;">
+  <div class="container-fluid py-5 niii">
+    <h1 class="display-5 fw-bold text-here" style="z-index: 100;">Explore Stock Footage</h1>
+    <img class="video" src="{% static 'images/banner.gif' %}" alt="">
+    
+    <center>
+      <form method="GET" class="text-align-center form-top" action="{% url 'search' %}"><input name="search"
+          placeholder="Search for Footage" class="bar"><button class="search-button" type="submit"><svg
+            xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></button></form>
+     
+    </center>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-10 flexy">
+    {% for a in page.object_list %}
+
+    <div class="box">
+      <a class="image-home" href='{{ a.id }}'>
+
+        <img class="display-image" src='{{ a.image_thumbnail.url }}' />
+
+
+
+
+      </a>
+    </div>
+
+    {% endfor %}
+    <h1 class=text-white>Page {{ page.number }}</h1>
+    {% if page.has_previous %}<a href="{% url 'home' %}?page={{ page.previous_page_number }}"><button class="btn btn-outline-info m-1">Previous page</button></a>{% endif %}
+    {% if page.has_next %}<a href="{% url 'home' %}?page={{ page.next_page_number }}"><button class="btn btn-outline-info m-1">Next page</button></a>{% endif %}
+  </div>
+
+  <div class="col-xl-2 sidebarhome">
+
+    <center>
+      <br>
+      {% if user.is_authenticated == False %}
+      <a href="/register"><button class="starttoday"><strong>Start Free Today!</strong></button></a>
+      <br>
+      <br>
+      {%endif%}
+
+      <a href="/credits" class="price_link"><Button class="btn btn-outline-success m-3">Purchase Credits</button></a>
+
+      <!-- Category -->
+      <h4 class="text-white m-3">Categories</h4>
+      <a href="/c/arts"><button class="btn btn-outline-info m-1">Arts</button></a>
+      <a href="/c/Coronavirus & Pandemic"><button class="btn btn-outline-info m-1">Coronavirus/ Pandemic</button></a>
+      <a href="/c/education"><button class="btn btn-outline-info m-1">Education</button></a>
+      <a href="/c/Elements of Nature"><button class="btn btn-outline-info m-1">Elements of Nature</button></a>
+      <a href="/c/food"><button class="btn btn-outline-info m-1">Food</button></a>
+      <a href="/c/Green Planet"><button class="btn btn-outline-info m-1">Green Planet</button></a>
+      <a href="/c/home"><button class="btn btn-outline-info m-1">Home</button></a>
+      <a href="/c/industry"> <button class="btn btn-outline-info m-1">Industry</button></a>
+      <a href="/c/lifestyle"> <button class="btn btn-outline-info m-1">Lifestyle</button></a>
+      <a href="/c/love"> <button class="btn btn-outline-info m-1">Love</button></a>
+      <a href="/c/landscape"> <button class="btn btn-outline-info m-1">Landscapes</button></a>
+      <a href="/c/Medical & Health"> <button class="btn btn-outline-info m-1">Medical & Health</button></a>
+      <a href="/c/people"> <button class="btn btn-outline-info m-1">People</button></a>
+      <a href="/c/Religion & Traditions"> <button class="btn btn-outline-info m-1">Religion & Traditions</button></a>
+      <a href="/c/Sport & Fitness"> <button class="btn btn-outline-info m-1">Sport & Fitness</button></a>
+      <a href="/c/Technology & Science"> <button class="btn btn-outline-info m-1">Technology & Science</button></a>
+      <a href="/c/Motion or Timelapse"> <button class="btn btn-outline-info m-1">Motion or Timelapse</button></a>
+      <a href="/c/travel"> <button class="btn btn-outline-info m-1">Travel & World</button></a>
+      <a href="/c/Transportation"><button class="btn btn-outline-info m-1">Transportation</button></a>
+      <a href="/c/Urban & City"> <button class="btn btn-outline-info m-1">Urban & City</button></a>
+      <a href="/c/vintage"> <button class="btn btn-outline-info m-1">Vinatage</button></a>
+
+
+
+    </center>
+
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock content %}

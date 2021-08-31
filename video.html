@@ -1,4 +1,5 @@
 {% extends "PhamPhotosApp/base.html" %} {% block content %}
+{% load static %}
 
 
 
@@ -8,9 +9,7 @@
 <div class="main-header p-5">
   <div class="container-fluid py-5 niii">
     <h1 class="display-5 fw-bold text-here">Explore Stock Footage</h1>
-    <video class="video" autoplay muted loop>
-      <source src="../media/images/banner.mp4" type="video/mp4">
-    </video>
+    <img class="video" src="{% static 'images/banner.gif' %}" alt="">
     <center>
       <form method="GET" class="text-align-center form-top" action="{% url 'vidsearch' %}"><input name="search"
           placeholder="Search for Footage" class="bar"><button class="search-button" type="submit"><svg
@@ -19,7 +18,7 @@
             <path
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
           </svg></button></form>
-      <p class="trending-text">Trending Searches: COVID-19, Food, Pandemic, Sport, Super Slow, Business, Time Lapse</p>
+      
     </center>
 
   </div>
@@ -38,17 +37,17 @@
             
     id="video"
     class="videoo"
-    preload="auto"
     width="400"
     height="224"
-
     muted=true
+    codecs="vp8, vorbis"
+    preload="metadata"
+   
     
     loop
   >
-    <source src="{{ a.video.url }}" type="video/mp4" />
-  
-    
+    <data-src src="{{ a.video.url }}" type="video/mp4"></data-src>
+
   </video>
       
           
@@ -60,6 +59,7 @@
       
         
         {% endfor %}
+    
       </div>
       
     <div class="col-xl-2 sidebarhome">
@@ -120,6 +120,13 @@ this.pause();
 
 </script>
 
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazy/1.7.5/jquery.lazy.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazy/1.7.5/plugins/jquery.lazy.av.min.js"></script>
+<script type="text/javascript">
+  jQuery(function($) {
+      $("video").lazy();
+  });
+  </script>
 
 
 
