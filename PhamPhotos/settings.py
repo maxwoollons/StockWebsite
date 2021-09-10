@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*a@hu_bnr$quso+6gvtdh5u(k)z$%s29+r_=qo36r6af$7$g3='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -146,5 +146,5 @@ DEFAULT_FROM_EMAIL = 'noreply@ultimateimagination.com.au'
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'Phamphotos123'
 
-
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
