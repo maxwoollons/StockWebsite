@@ -45,7 +45,8 @@
     </div>
 
     {% endfor %}
-    <h1 class=text-white>Page {{ page.number }}</h1>
+    <br>
+    <small class=text-white>Page {{ page.number }}</small>
     {% if page.has_previous %}<a href="{% url 'home' %}?page={{ page.previous_page_number }}"><button class="btn btn-outline-info m-1">Previous page</button></a>{% endif %}
     {% if page.has_next %}<a href="{% url 'home' %}?page={{ page.next_page_number }}"><button class="btn btn-outline-info m-1">Next page</button></a>{% endif %}
   </div>

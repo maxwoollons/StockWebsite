@@ -35,7 +35,7 @@ def login_excluded(redirect_to):
 def home(request):
     Media = photos.objects.all().filter(approved=True).order_by('-added')
 
-    media_paginator = Paginator(Media, 30)
+    media_paginator = Paginator(Media, 40)
 
     page_num = request.GET.get('page')
 
