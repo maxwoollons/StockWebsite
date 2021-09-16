@@ -8,13 +8,14 @@
 {% extends "PhamPhotosApp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load static %}
 <div class="container">
 <div class="wrapper fadeInDown">
   <div id="formContent">
   
   
   <div class="px-4 py-5 my-5 text-center bg-white rounded-3">
-    <img class="d-block mx-auto mb-4" src="https://i.imgur.com/TixRqpj.gif" alt="" width="100" height="100">
+    <img class="d-block mx-auto mb-4" src="{% static 'images/ui.png' %}" alt="" width="100" height="100">
     <h1 class="display-5 fw-bold">Ultimate Imagination Credits</h1>
     <div class="col-lg-6 mx-auto">
       <h4 class="lead mb-4">Your are purchasing the following:</h4>
