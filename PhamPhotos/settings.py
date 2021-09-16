@@ -148,5 +148,7 @@ DEFAULT_FROM_EMAIL = 'noreply@ultimateimagination.com.au'
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'Phamphotos123'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 
 
