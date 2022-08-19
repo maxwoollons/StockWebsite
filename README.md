@@ -16,7 +16,7 @@ Credit exchange
 
 
 
-![alt text]([http://url/to/img.png](https://ibb.co/j6qJhH0))
+![alt text](https://ibb.co/j6qJhH0)
 
 https://ibb.co/PgHM4Xg
 https://ibb.co/cvKv5f7
