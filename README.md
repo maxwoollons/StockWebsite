@@ -13,7 +13,11 @@ Credit exchange
 
 <h3>We are getting there i hate dealing with video elements</h3>
 
-https://ibb.co/j6qJhH0
+
+
+
+![alt text]([http://url/to/img.png](https://ibb.co/j6qJhH0))
+
 https://ibb.co/PgHM4Xg
 https://ibb.co/cvKv5f7
 https://ibb.co/dcvd6NK
