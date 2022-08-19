@@ -1,3 +1,6 @@
+<h1>About Ultimate Imagination</1>
+<h3>Ultimate imagination Stock Photography was one of the first major projects I worked on. From start to finish took around 6 months to put together. For this website I used Django to develop the website as a backend project. At the end of this project was a fully functional stock photography website where users could upload content for other users to purchase using Paypal to securely accept payments from client to system. This website would take a portion of each image payment as a service fee.<h3>
+
 # StockWebsite
 <h3>Features Added</h3>
 Login, Logout & account features 
