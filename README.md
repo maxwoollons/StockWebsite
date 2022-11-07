@@ -14,8 +14,6 @@ Credits
 Credit exchange
 
 
-<h3>We are getting there i hate dealing with video elements</h3>
-
 ![Main Home Page](https://i.ibb.co/P1VSp5X/main.png)
 ![Profile Page](https://i.ibb.co/WgGyXWH/profile.png)
 ![Purchase Page For Tokens](https://i.ibb.co/0D1sqQ4/purchase.png)
