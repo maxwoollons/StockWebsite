@@ -23,3 +23,16 @@ Credit exchange
 ![Detail View](https://i.ibb.co/DrX7nvm/detail-view.png)
 
 
+
+# StockWebsite
+To install with docker
+clone the git repo.
+
+Run the following commands in the directory.
+docker build . -t phamphotos
+
+docker run -p 8000:8000 phamphotos
+
+The website should be running on port 8000.
+http://localhost:8000
+
