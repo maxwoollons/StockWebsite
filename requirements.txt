@@ -1,0 +1,10 @@
+asgiref==3.8.1
+crispy-bootstrap4==2024.1
+Django==5.0.7
+django-appconf==1.0.6
+django-crispy-forms==2.3
+django-imagekit==5.0.0
+pilkit==3.0
+pillow==10.4.0
+six==1.16.0
+sqlparse==0.5.1
